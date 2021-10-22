@@ -1,0 +1,19 @@
+- defaults:                 # Defaults control what action will be taken for everything in the link section
+    link:
+      # create: true
+      relink: true          # Removes old target if it is a symlink
+
+- clean: ['~']              # Defines what directory should be inspected for dead links, and removes links
+
+- link:                     # Defines where we want the symlink to be once linked
+    ~/.zshrc: zshrc
+    # ~/.bashrc: bashrc
+    # ~/.vim: vim
+    # ~/.vimrc: vimrc
+    # ~/.tmux.conf: tmux.conf
+
+# - create:
+    # - ~/downloads
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
