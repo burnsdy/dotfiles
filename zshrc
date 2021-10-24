@@ -18,14 +18,16 @@ setopt HIST_REDUCE_BLANKS       # remove blank lines from history
 
 # Plugins
 source ~/.zsh/antigen/antigen.zsh
-antigen bundle git
-antigen bundle command-not-found
-antigen bundle djui/alias-tips
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-completions
-antigen bundle jeffreytse/zsh-vi-mode
+antigen bundles <<EOBUNDLES
+    git
+    command-not-found
+    djui/alias-tips
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-completions
+    jeffreytse/zsh-vi-mode
+EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
 
@@ -64,10 +66,10 @@ hash -d comp=~/helix/digital-purchase-components
 hash -d api=~/helix/digital-cart-api
 hash -d cart=~/helix/digital-purchase-cart-web
 hash -d checkout=~/helix/digital-purchase-checkout-web
-hash -d automation=~/helix/digital-purchase-automation
+hash -d auto=~/helix/digital-purchase-automation
 hash -d fuse=~/helix/digital-purchase-fuse
 
-# Old Git Aliases
+# Git Aliases
 # alias g='git'
 # alias gs='git status'
 # alias ga='git add'
