@@ -1,110 +1,101 @@
-" MOST IMPORTANT SETTINGS
-
-" Best practice to set this explictly at the top of .vimrc
-" Switches from default vi-compatibility mode and enables Vim functionality
-set nocompatible
-" Disable Vim startup message
-set shortmess+=I
-" Set visual bell instead of audible bell
-set visualbell
-set t_vb=
-" Enable mouse support for all modes
-if has('mouse')
+" GENERAL CONFIG
+" Best practice to set nocompatible explictly at the top of .vimrc
+set nocompatible									" Switches from default vi-compatibility mode and enables Vim functionality
+set exrc											" Sources a local vimrc if one is available
+set shortmess+=I									" Disable Vim startup message
+set hidden											" Allow hidden buffers
+set visualbell										" Set visual bell instead of audible bell
+set t_vb=	
+if has('mouse')										" Enable mouse support for all modes
   set mouse=a
-endif
-" Allow hidden buffers
-set hidden
-" Ask to save changed files
-set confirm
-" Set encoding to UTF-8
-if &encoding ==# 'latin1' && has('gui_running')
+endif									
+if &encoding ==# 'latin1' && has('gui_running')		" Set encoding to UTF-8
   set encoding=utf-8
 endif
 
 
-" FORMATTING 
+" SAVING
+set confirm											" Ask to save changed files
+set nobackup										" Don't save backup files
+set noswapfile										" Gets rid of temporary swapfiles
+set autoread										" Automatically read file into buffer if it has been changed outside Vim
+au FocusLost,WinLeave * :silent! wa					" Save whenever switching windows or leaving vim
+au FocusGained,BufEnter * :silent! !				" Trigger autoread when changing buffers or coming back to vim.
 
-" Always show status line at the bottom
-set laststatus=2
-" Show empty line at the bottom
-if !&scrolloff
-  set scrolloff=8
+
+" FORMATTING 
+set laststatus=2									" Always show status line at the bottom
+if !&scrolloff										" Show empty line at the bottom
+  set scrolloff=10
 endif
 if !&sidescrolloff
   set sidescrolloff=5
 endif
 set display+=lastline
-" Enable syntax highlighting
-if has('syntax') && !exists('g:syntax_on')
+if has('syntax') && !exists('g:syntax_on')			" Enable syntax highlighting
   syntax enable
 endif
-" Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^Eterm'
+if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright colors without forcing bold
   set t_Co=16
 endif
-" Line numbers
-set number
+set showmode										" Show mode on the last line
+set cursorline										" Highlight line under cursor horizontally
+set number											" Line numbers
 set relativenumber
 set ruler
-" Setting basic listchars
-if &listchars ==# 'eol:$'
+set signcolumn=yes									" Adds sign column to the left of line numbers
+" Change line number and gutter color
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+if &listchars ==# 'eol:$'							" Setting basic listchars
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
-" Delete comment character when joining commented lines
-if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j 
+if v:version > 703 || v:version == 703 && has("patch541")	
+  set formatoptions+=j 								" Delete comment character when joining commented lines
 endif
 
 
 " COMMANDS
-
-" Better command-line completion
-set wildmenu
-" Show partial commands in last line of screen
-set showcmd
+set wildmenu										" Better command-line completion
+set showcmd											" Show partial commands in last line of screen
 set complete-=i
-" Stop certain movements from going to the first character of a line
-set nostartofline
+set nostartofline									" Stop certain movements from going to the first character of a line
 set nrformats-=octal
-" Never time out on mappings, quickly time out on keycodes
-if !has('nvim') && &ttimeoutlen == -1
+if !has('nvim') && &ttimeoutlen == -1				" Never time out on mappings, quickly time out on keycodes
   set ttimeout
   set ttimeoutlen=100
 endif
 
 
 " INDENTING
-
-" Enable intelligent auto-indenting based on file type
-if has('autocmd')
+if has('autocmd')									" Enable intelligent auto-indenting based on file type
   filetype indent plugin on
 endif
-" Keep same indent as previous line when opening new line
-set autoindent
+set autoindent										" Keep same indent as previous line when opening new line
+set smartindent
 set smarttab
-" Set indentation width for tabs
-set shiftwidth=4
+set shiftwidth=4									" Set indentation width for tabs
 set tabstop=4
+set softtabstop=4
 
 
 " SEARCHING
-
-set ignorecase		" Case-insensitive searching
-set smartcase		" Case-sensitive searching if search contains any capital letters
-set incsearch		" Allow searching as you type
-set hlsearch		" Highlight searches
+set ignorecase										" Case-insensitive searching
+set smartcase										" Case-sensitive searching if search contains any capital letters
+set incsearch										" Allow searching as you type
+set hlsearch										" Highlight searches
 
 
 " KEY BINDINGS
-
-" Make backspace behave more intuitively
-set backspace=indent,eol,start
-" Remap Leader key
-nnoremap <SPACE> <Nop>
+set backspace=indent,eol,start						" Make backspace behave more intuitively
+nnoremap <SPACE> <Nop>								" Remap Leader key
 let mapleader=" "
 " Recursive Mappings
-nmap Q <Nop>			" Q in normal mode enters Ex mode
+nmap Q <Nop>										" Q in normal mode enters Ex mode
 " Non-recursive Mappings
-nnoremap Y y$			" Map Y to yank to EOL like D and C
-nnoremap <leader>h :nohl<CR>	" <Space>h turns off search highlighing
-nnoremap <C-L> :nohl<CR><C-L>	" <C-L> redraws the screens and turns off search highlighting
+nnoremap <leader>h :nohl<CR>						" <Space>h turns off search highlighing
+nnoremap <C-L> :nohl<CR><C-L>						" <C-L> redraws the screens and turns off search highlighting
+nnoremap J 10j										" Map J and K to 10j and 10k respectively
+nnoremap K 10k
+nnoremap <leader>j J								" Remap original join functionality to <Space>j
+nnoremap Y y$										" Map Y to yank to EOL like D and C
+inoremap jk <esc>									" Map jk to exit insert mode
