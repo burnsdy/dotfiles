@@ -1,5 +1,5 @@
 " GENERAL CONFIG
-" Best practice to set nocompatible explictly at the top of .vimrc
+" Best practice to set nocompatible (use Vim instead of vi) explictly at the top of .vimrc
 set nocompatible									" Switches from default vi-compatibility mode and enables Vim functionality
 set exrc											" Sources a local vimrc if one is available
 set shortmess+=I									" Disable Vim startup message
@@ -44,7 +44,7 @@ set number											" Line numbers
 set relativenumber
 set ruler
 set signcolumn=yes									" Adds sign column to the left of line numbers
-" Change line number and gutter color
+													" Change line number and gutter color
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 if &listchars ==# 'eol:$'							" Setting basic listchars
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -62,7 +62,7 @@ set nostartofline									" Stop certain movements from going to the first chara
 set nrformats-=octal
 if !has('nvim') && &ttimeoutlen == -1				" Never time out on mappings, quickly time out on keycodes
   set ttimeout
-  set ttimeoutlen=100
+  set ttimeoutlen=50
 endif
 
 
@@ -89,13 +89,11 @@ set hlsearch										" Highlight searches
 set backspace=indent,eol,start						" Make backspace behave more intuitively
 nnoremap <SPACE> <Nop>								" Remap Leader key
 let mapleader=" "
-" Recursive Mappings
 nmap Q <Nop>										" Q in normal mode enters Ex mode
-" Non-recursive Mappings
 nnoremap <leader>h :nohl<CR>						" <Space>h turns off search highlighing
 nnoremap <C-L> :nohl<CR><C-L>						" <C-L> redraws the screens and turns off search highlighting
 nnoremap J 10j										" Map J and K to 10j and 10k respectively
 nnoremap K 10k
 nnoremap <leader>j J								" Remap original join functionality to <Space>j
 nnoremap Y y$										" Map Y to yank to EOL like D and C
-inoremap jk <esc>									" Map jk to exit insert mode
+inoremap jk <esc>									" Map jk to exit in insert mode
