@@ -9,9 +9,7 @@ set t_vb=
 if has('mouse')										" Enable mouse support for all modes
   set mouse=a
 endif									
-if &encoding ==# 'latin1' && has('gui_running')		" Set encoding to UTF-8
-  set encoding=utf-8
-endif
+set encoding=utf-8									" Set encoding to UTF-8
 
 
 " SAVING
@@ -25,7 +23,7 @@ au FocusGained,BufEnter * :silent! !				" Trigger autoread when changing buffers
 
 " FORMATTING 
 set laststatus=2									" Always show status line at the bottom
-if !&scrolloff										" Show empty line at the bottom
+if !&scrolloff
   set scrolloff=10
 endif
 if !&sidescrolloff
@@ -45,7 +43,7 @@ set relativenumber
 set ruler
 set signcolumn=yes									" Adds sign column to the left of line numbers
 													" Change line number and gutter color
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 if &listchars ==# 'eol:$'							" Setting basic listchars
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
@@ -96,4 +94,32 @@ nnoremap J 10j										" Map J and K to 10j and 10k respectively
 nnoremap K 10k
 nnoremap <leader>j J								" Remap original join functionality to <Space>j
 nnoremap Y y$										" Map Y to yank to EOL like D and C
-inoremap jk <esc>									" Map jk to exit in insert mode
+
+
+" PLUGINS
+call plug#begin('./vim/plugged')
+" Plugins listed in alphabetical order by repository name
+Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-repeat'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+" Themes
+Plug 'dracula/vim',{'as':'dracula'}
+Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'sainnhe/sonokai'
+call plug#end()
+
+
+" PLUGIN SETTINGS
+let g:NERDSpaceDelims = 1							" Add spaces after comment delimiters by default
+let g:NERDCommentEmptyLines = 1						" Allow commenting and inverting empty lines
+
+
+" SET THEME
+if has('nvim')
+	colorscheme gruvbox
+endif

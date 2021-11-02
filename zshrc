@@ -43,6 +43,7 @@ autoload -Uz compinit && compinit
 alias ls='ls -AF'
 alias grep='grep --color'
 alias v='vim'
+alias nv='nvim'
 alias c='clear'
 alias h='history'
 alias r='source ~/.zshrc'
