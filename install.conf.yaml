@@ -6,7 +6,6 @@
 - clean: ['~']              # Defines what directory should be inspected for dead links, and removes links
 
 - link:                     # Defines where we want the symlink to be once linked
-    # ~/.bashrc:
     ~/.config/nvim:
     ~/.gitconfig:
     ~/.p10k.zsh: zsh/p10k.zsh
