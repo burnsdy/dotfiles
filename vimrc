@@ -19,6 +19,7 @@ set noswapfile										" Gets rid of temporary swapfiles
 set autoread										" Automatically read file into buffer if it has been changed outside Vim
 au FocusLost,WinLeave * :silent! wa					" Save whenever switching windows or leaving vim
 au FocusGained,BufEnter * :silent! !				" Trigger autoread when changing buffers or coming back to vim.
+set updatetime=1000
 
 
 " FORMATTING 
@@ -83,29 +84,25 @@ set incsearch										" Allow searching as you type
 set hlsearch										" Highlight searches
 
 
-" KEY BINDINGS
-set backspace=indent,eol,start						" Make backspace behave more intuitively
-nnoremap <SPACE> <Nop>								" Remap Leader key
-let mapleader=" "
-nmap Q <Nop>										" Q in normal mode enters Ex mode
-nnoremap <leader>h :nohl<CR>						" <Space>h turns off search highlighing
-nnoremap <C-L> :nohl<CR><C-L>						" <C-L> redraws the screens and turns off search highlighting
-nnoremap J 10j										" Map J and K to 10j and 10k respectively
-nnoremap K 10k
-nnoremap <leader>j J								" Remap original join functionality to <Space>j
-nnoremap Y y$										" Map Y to yank to EOL like D and C
-
-
 " PLUGINS
 call plug#begin('./vim/plugged')
-" Plugins listed in alphabetical order by repository name
+" Vim Plugins
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
+" NeoVim Plugins
+if has('nvim')
+endif
 " Themes
 Plug 'dracula/vim',{'as':'dracula'}
 Plug 'morhetz/gruvbox'
@@ -115,11 +112,45 @@ call plug#end()
 
 
 " PLUGIN SETTINGS
+" NERDCommenter
 let g:NERDSpaceDelims = 1							" Add spaces after comment delimiters by default
 let g:NERDCommentEmptyLines = 1						" Allow commenting and inverting empty lines
+" NERDTree
+let NERDTreeShowHidden=1							" Show hidden files by default
+autocmd StdinReadPre * let s:std_in=1				" Start NERDTree when Vim starts with a directory argument.
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+													" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+													" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" Airline
+let g:airline#extensions#tabline#enabled = 1		" Enable buffer display as tabs extension
+let g:airline#extensions#tabline#left_sep = ' '		" Define separators for buffer extension to display as 'straight' tabs
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'	" Theme for buffer extension
+
 
 
 " SET THEME
 if has('nvim')
 	colorscheme gruvbox
 endif
+
+
+" KEY BINDINGS
+set backspace=indent,eol,start							" Make backspace behave more intuitively
+nnoremap <SPACE> <Nop>									" Remap Leader key
+let mapleader=" "
+nmap Q <Nop>											" Q in normal mode enters Ex mode
+nnoremap <leader>h :nohl<CR>							" <Space>h turns off search highlighing
+nnoremap <C-L> :nohl<CR><C-L>							" <C-L> redraws the screens and turns off search highlighting
+nnoremap J 10j											" Map J and K to 10j and 10k respectively
+nnoremap K 10k
+nnoremap <leader>j J									" Remap original join functionality to <Space>j
+nnoremap Y y$											" Map Y to yank to EOL like D and C
+nnoremap <leader>n :NERDTreeFocus<CR>					" Go to NERDTree
+nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>	" Mirror NERDTree before showing it
+nnoremap <C-t> :NERDTreeToggle<CR>						" Toggle NERDTree
+nnoremap <C-f> :NERDTreeFind<CR>						" Open NERDTree Finder

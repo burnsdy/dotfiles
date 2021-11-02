@@ -38,6 +38,7 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # Completions
 autoload -Uz compinit && compinit
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # General Aliases
 alias ls='ls -AF'

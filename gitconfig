@@ -1,3 +1,12 @@
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
 [user]
 	email = dylan.burns@lowes.com
 	name = Dylan Burns
