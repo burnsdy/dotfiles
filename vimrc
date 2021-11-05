@@ -37,6 +37,7 @@ endif
 if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright colors without forcing bold
   set t_Co=16
 endif
+set conceallevel=2									" Use Vim's standard syntax concealing
 set showmode										" Show mode on the last line
 set cursorline										" Highlight line under cursor horizontally
 set number											" Line numbers
@@ -94,9 +95,12 @@ Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'godlygreek/tabular'
+Plug 'markonm/traces.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
@@ -113,24 +117,30 @@ call plug#end()
 
 " PLUGIN SETTINGS
 " NERDCommenter
-let g:NERDSpaceDelims = 1							" Add spaces after comment delimiters by default
-let g:NERDCommentEmptyLines = 1						" Allow commenting and inverting empty lines
+let g:NERDSpaceDelims = 1									" Add spaces after comment delimiters by default
+let g:NERDCommentEmptyLines = 1								" Allow commenting and inverting empty lines
 " NERDTree
-let NERDTreeShowHidden=1							" Show hidden files by default
-autocmd StdinReadPre * let s:std_in=1				" Start NERDTree when Vim starts with a directory argument.
+let NERDTreeShowHidden=1									" Show hidden files by default
+autocmd StdinReadPre * let s:std_in=1						" Start NERDTree when Vim starts with a directory argument.
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-													" Close the tab if NERDTree is the only window remaining in it.
+															" Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-													" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+															" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 " Airline
-let g:airline#extensions#tabline#enabled = 1		" Enable buffer display as tabs extension
-let g:airline#extensions#tabline#left_sep = ' '		" Define separators for buffer extension to display as 'straight' tabs
+let g:airline#extensions#tabline#enabled = 1				" Enable buffer display as tabs extension
+let g:airline#extensions#tabline#left_sep = ' '				" Define separators for buffer extension to display as 'straight' tabs
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'	" Theme for buffer extension
-
+" Vim Markdown
+let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'rust', 'sass', 'vim', 'xml']
+let g:vim_markdown_strikethrough = 1						" Allow strikethrough formatting in Markdown
+let g:vim_markdown_new_list_item_indent = 0					" Keep same indent level when adding new list items
+let g:vim_markdown_autowrite = 1							" Automatically save in the current document when following a link
+let g:vim_markdown_edit_url_in = 'tab'						" Open links in a new tab and not the current buffer
+let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named anchors in links in the form of file#anchor
 
 
 " SET THEME
@@ -140,17 +150,20 @@ endif
 
 
 " KEY BINDINGS
-set backspace=indent,eol,start							" Make backspace behave more intuitively
-nnoremap <SPACE> <Nop>									" Remap Leader key
+set backspace=indent,eol,start								" Make backspace behave more intuitively
+nnoremap <SPACE> <Nop>										" Remap Leader key
 let mapleader=" "
-nmap Q <Nop>											" Q in normal mode enters Ex mode
-nnoremap <leader>h :nohl<CR>							" <Space>h turns off search highlighing
-nnoremap <C-L> :nohl<CR><C-L>							" <C-L> redraws the screens and turns off search highlighting
-nnoremap J 10j											" Map J and K to 10j and 10k respectively
+nmap Q <Nop>												" Q in normal mode enters Ex mode
+nnoremap <leader>w :w<CR>									" <Space>w saves file
+nnoremap Y y$												" Map Y to yank to EOL like D and C
+nnoremap <leader>h :nohl<CR>								" <Space>h turns off search highlighing
+nnoremap <C-L> :nohl<CR><C-L>								" <C-L> redraws the screens and turns off search highlighting
+nnoremap J 10j												" Map J and K to 10j and 10k respectively
 nnoremap K 10k
-nnoremap <leader>j J									" Remap original join functionality to <Space>j
-nnoremap Y y$											" Map Y to yank to EOL like D and C
-nnoremap <leader>n :NERDTreeFocus<CR>					" Go to NERDTree
-nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>	" Mirror NERDTree before showing it
-nnoremap <C-t> :NERDTreeToggle<CR>						" Toggle NERDTree
-nnoremap <C-f> :NERDTreeFind<CR>						" Open NERDTree Finder
+nnoremap <leader>j J										" Remap original join functionality to <Space>j
+nnoremap <C-n> :NERDTreeFocus<CR>							" Go to NERDTree
+nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>	" Mirror NERDTree before showing it
+nnoremap <leader>t :NERDTreeToggle<CR>						" Toggle NERDTree
+" nnoremap <C-f> :NERDTreeFind<CR>							" Open NERDTree Finder
+nnoremap <C-f> :Files<CR>									" FZF file finder
+nnoremap <leader>f :Rg<CR>									" FZF rg find in file

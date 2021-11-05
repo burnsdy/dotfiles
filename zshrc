@@ -36,15 +36,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if type rg &> /dev/null; then
+	export FZF_DEFAULT_COMMAND='rg --files'
+	export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 # Completions
 autoload -Uz compinit && compinit
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # General Aliases
 alias ls='ls -AF'
 alias grep='grep --color'
 alias v='vim'
-alias nv='nvim'
+alias n='nvim'
 alias c='clear'
 alias h='history'
 alias r='source ~/.zshrc'
@@ -62,14 +68,10 @@ alias zshrc='vim ~/dotfiles/zshrc'
 alias -g L='| less'
 alias -g G='| grep --color'
 
-# Lowe's Named Directories
-hash -d helix=~/helix
-hash -d comp=~/helix/digital-purchase-components
-hash -d api=~/helix/digital-cart-api
-hash -d cart=~/helix/digital-purchase-cart-web
-hash -d checkout=~/helix/digital-purchase-checkout-web
-hash -d auto=~/helix/digital-purchase-automation
-hash -d fuse=~/helix/digital-purchase-fuse
+# Hidden Aliases
+if [ -f ~/.zsh/zsh_hidden_aliases ]; then
+	source ~/.zsh/zsh_hidden_aliases
+fi
 
 # Git Aliases
 # alias g='git'
