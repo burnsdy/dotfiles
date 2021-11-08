@@ -10,3 +10,6 @@
 [user]
 	email = burnsdy@gmail.com
 	name = Dylan Burns
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
