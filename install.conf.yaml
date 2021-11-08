@@ -8,6 +8,7 @@
 - link:                     # Defines where we want the symlink to be once linked
     ~/.config/nvim:
     ~/.gitconfig:
+    ~/.nvim:
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.tmux.conf:
     ~/.vim:

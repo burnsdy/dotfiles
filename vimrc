@@ -86,7 +86,7 @@ set hlsearch										" Highlight searches
 
 
 " PLUGINS
-call plug#begin('./vim/plugged')
+call plug#begin('~/.vim/plugged')
 " Vim Plugins
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
