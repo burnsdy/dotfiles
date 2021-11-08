@@ -8,5 +8,8 @@
     diffFilter = delta --color-only
 
 [user]
-	email = dylan.burns@lowes.com
+	email = burnsdy@gmail.com
 	name = Dylan Burns
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -1,0 +1,12 @@
+python3
+nodejs
+npm
+neovim
+tmux
+fzf
+tldr
+bat
+delta
+fd-find
+silversearcher-ag
+ripgrep
