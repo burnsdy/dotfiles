@@ -1,3 +1,6 @@
 #!/bin/bash
 
-cat utils.txt | xargs sudo apt-get install -y 
+
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	cat utils_lists/* | xargs sudo apt-get install -y 
+fi

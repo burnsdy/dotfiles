@@ -28,7 +28,7 @@ if !&scrolloff
   set scrolloff=10
 endif
 if !&sidescrolloff
-  set sidescrolloff=5
+  set sidescrolloff=20
 endif
 set display+=lastline
 if has('syntax') && !exists('g:syntax_on')			" Enable syntax highlighting
@@ -44,8 +44,6 @@ set number											" Line numbers
 set relativenumber
 set ruler
 set signcolumn=yes									" Adds sign column to the left of line numbers
-													" Change line number and gutter color
-"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 if &listchars ==# 'eol:$'							" Setting basic listchars
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
@@ -98,6 +96,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'godlygeek/tabular'
 Plug 'markonm/traces.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'plasticboy/vim-markdown'
@@ -147,6 +146,7 @@ let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named an
 if has('nvim')
 	colorscheme gruvbox
 endif
+let g:airline_theme='gruvbox'
 
 
 " KEY BINDINGS
