@@ -37,8 +37,8 @@ endif
 if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright colors without forcing bold
   set t_Co=16
 endif
-set conceallevel=2									" Use Vim's standard syntax concealing
-set showmode										" Show mode on the last line
+"set conceallevel=0									" Use Vim's standard syntax concealing
+"set showmode										" Show mode on the last line
 set cursorline										" Highlight line under cursor horizontally
 set number											" Line numbers
 set relativenumber
@@ -89,7 +89,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
