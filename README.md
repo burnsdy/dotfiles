@@ -1,14 +1,14 @@
 # Dotfiles
 
-## Configuration Files
+### Configurations
+Note: gitconfigs are maintained separately among multiple devices
 - Zsh
 - Tmux
-- Vim/NeoVim and plugins
+- NeoVim + plugins (with backwards compatibility to Vim)
 
-*Git Configs are maintained locally*
 
 ### Clean Setup
-Symlink files: `./install`
-Configure Shell Theme: `p10k configure`, then install recommended fonts
-Install Shell Utilities: `./install_utils`
-Install Vim/NeoVim Plugins: enter NeoVim and run ``:PlugInstall
+- Symlink files to your home directory (through use of [Dotbot](https://github.com/anishathalye/dotbot)): `./install`
+- Configure shell theme: `p10k configure`, then install the [recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
+- Install essential shell utilities: `./install_utils`
+- Configure Vim/NeoVim plugins: enter NeoVim and run `:PlugInstall`
