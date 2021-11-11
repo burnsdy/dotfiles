@@ -15,15 +15,17 @@ set encoding=utf-8									" Set encoding to UTF-8
 " SAVING
 set confirm											" Ask to save changed files
 set nobackup										" Don't save backup files
+set nowritebackup
 set noswapfile										" Gets rid of temporary swapfiles
 set autoread										" Automatically read file into buffer if it has been changed outside Vim
 au FocusLost,WinLeave * :silent! wa					" Save whenever switching windows or leaving vim
 au FocusGained,BufEnter * :silent! !				" Trigger autoread when changing buffers or coming back to vim.
-set updatetime=1000
+set updatetime=300
 
 
 " FORMATTING 
 set laststatus=2									" Always show status line at the bottom
+set cmdheight=2
 if !&scrolloff
   set scrolloff=10
 endif
@@ -37,9 +39,10 @@ endif
 if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright colors without forcing bold
   set t_Co=16
 endif
-"set conceallevel=0									" Use Vim's standard syntax concealing
-"set showmode										" Show mode on the last line
-set cursorline										" Highlight line under cursor horizontally
+set showmode										" Show mode on the last line
+if has('nvim')
+	set cursorline										" Highlight line under cursor horizontally
+endif
 set number											" Line numbers
 set relativenumber
 set ruler
@@ -92,29 +95,39 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'godlygeek/tabular'
 Plug 'markonm/traces.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript'
+Plug 'herringtondarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 " NeoVim Plugins
 if has('nvim')
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 " Themes
-Plug 'dracula/vim',{'as':'dracula'}
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim',{'as':'dracula'}
+Plug 'sonph/onehalf',{'rtp':'vim/'}
 Plug 'arcticicestudio/nord-vim'
 Plug 'sainnhe/sonokai'
 call plug#end()
 
 
 " PLUGIN SETTINGS
+" Conquer of Completion
+if has('nvim')
+	source ~/.nvim/cocconf.vim
+endif
 " NERDCommenter
 let g:NERDSpaceDelims = 1									" Add spaces after comment delimiters by default
 let g:NERDCommentEmptyLines = 1								" Allow commenting and inverting empty lines
@@ -130,9 +143,8 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 " Airline
 let g:airline#extensions#tabline#enabled = 1				" Enable buffer display as tabs extension
-let g:airline#extensions#tabline#left_sep = ' '				" Define separators for buffer extension to display as 'straight' tabs
-let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'	" Theme for buffer extension
+let g:airline_powerline_fonts = 1							" Configure airline to use the powerline font
 " Vim Markdown
 let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'rust', 'sass', 'vim', 'xml']
 let g:vim_markdown_strikethrough = 1						" Allow strikethrough formatting in Markdown
@@ -150,20 +162,32 @@ let g:airline_theme='gruvbox'
 
 
 " KEY BINDINGS
+" Setting Leader
 set backspace=indent,eol,start								" Make backspace behave more intuitively
-nnoremap <SPACE> <Nop>										" Remap Leader key
+nnoremap <space> <Nop>										" Remap Leader key
 let mapleader=" "
+" General
 nmap Q <Nop>												" Q in normal mode enters Ex mode
-nnoremap <leader>w :w<CR>									" <Space>w saves file
-nnoremap Y y$												" Map Y to yank to EOL like D and C
-nnoremap <leader>h :nohl<CR>								" <Space>h turns off search highlighing
-nnoremap <C-L> :nohl<CR><C-L>								" <C-L> redraws the screens and turns off search highlighting
 nnoremap J 10j												" Map J and K to 10j and 10k respectively
 nnoremap K 10k
+nnoremap Y y$												" Map Y to yank to EOL like D and C
+nnoremap gI gi												" Map gI to Vim gi because mapping is overridden by coc.nvim
+nnoremap <leader>w :w<CR>									" <Space>w saves file
+nnoremap <leader>h :nohl<CR>								" <Space>h turns off search highlighing
+nnoremap <C-L> :nohl<CR><C-L>								" <C-L> redraws the screens and turns off search highlighting
 nnoremap <leader>j J										" Remap original join functionality to <Space>j
-nnoremap <C-n> :NERDTreeFocus<CR>							" Go to NERDTree
-nnoremap <leader>n :NERDTreeMirror<CR>:NERDTreeFocus<CR>	" Mirror NERDTree before showing it
-nnoremap <leader>t :NERDTreeToggle<CR>						" Toggle NERDTree
-" nnoremap <C-f> :NERDTreeFind<CR>							" Open NERDTree Finder
-nnoremap <C-f> :Files<CR>									" FZF file finder
-nnoremap <leader>f :Rg<CR>									" FZF rg find in file
+" Navigation
+nnoremap gt :tabnext<CR>									" Map gt to original :tabnext functionality
+nnoremap gT :tabprevious<CR>								" Map gT to original :tabnext functionality
+nnoremap <leader>b :buffers<CR>:buffer<space>
+nnoremap <leader>bd :bdelete<CR>							" Delete current buffer
+nnoremap L :bnext<CR>										" Map shift+arrow to switch buffers
+nnoremap H :bprevious<CR>
+" Plugins
+nnoremap <leader>t :NERDTreeMirror<CR>:NERDTreeToggle<CR>	" Toggle NERDTree
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>r :Rg<CR>
+cnoreabbrev pi PlugInstall
+cnoreabbrev pc PlugClean
+cnoreabbrev pu PlugUpdate
+cnoreabbrev pr Prettier										" Format file using Prettier

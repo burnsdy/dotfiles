@@ -15,6 +15,8 @@ setopt INC_APPEND_HISTORY			# add commands as they are typed, not at shell exit
 setopt HIST_EXPIRE_DUPS_FIRST		# expire duplicates first
 setopt HIST_IGNORE_DUPS				# do not store duplicates
 setopt HIST_REDUCE_BLANKS			# remove blank lines from history
+export VISUAL='/usr/local/bin/nvim'	# set graphical editor to nvim
+export EDITOR='/usr/bin/vim'			# set command-line editor to vim (non-graphical)
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -45,7 +47,7 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
-bindkey '^ ' autosuggest-accept		# Bind Ctrl+Space to accept current autosuggestion
+bindkey '^A' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
 
 # General Aliases
 alias ls='ls -AF'
@@ -63,7 +65,9 @@ alias 'cd ....'='cd ../../..'
 alias .....='cd ../../../..'
 alias 'cd .....'='cd ../../../..'
 alias home='cd ~'
-alias zshrc='vim ~/dotfiles/zshrc'
+alias tmux='tmux -2'				# Fix terminal colors inside tmux
+alias vimrc='nvim ~/.vimrc'
+alias zshrc='nvim ~/.zshrc'
 
 # Global Aliases
 alias -g L='| less'
