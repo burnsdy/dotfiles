@@ -31,6 +31,7 @@ if type rg &> /dev/null; then
 fi
 
 # Completions
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
 # Plugins
