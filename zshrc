@@ -5,11 +5,27 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Plugins
+source ~/.zsh/antigen/antigen.zsh
+antigen bundles <<EOBUNDLES
+    git
+    command-not-found
+    djui/alias-tips
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-completions
+    jeffreytse/zsh-vi-mode
+EOBUNDLES
+antigen theme romkatv/powerlevel10k
+antigen apply
+bindkey '^F' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
+
 # Options
 setopt AUTO_CD						# automatic change directory
 setopt NO_CASE_GLOB					# case-insensitive globbing
 setopt EXTENDED_HISTORY				# add timestamp and elapsed time of command to history
-setopt SHARE_HISTORY				# share history across multiple zsh sessions
+setopt NO_SHARE_HISTORY				# don't share history across multiple zsh sessions
 setopt APPEND_HISTORY				# append to history
 setopt INC_APPEND_HISTORY			# add commands as they are typed, not at shell exit
 setopt HIST_EXPIRE_DUPS_FIRST		# expire duplicates first
@@ -33,22 +49,6 @@ fi
 # Completions
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
-
-# Plugins
-source ~/.zsh/antigen/antigen.zsh
-antigen bundles <<EOBUNDLES
-    git
-    command-not-found
-    djui/alias-tips
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-syntax-highlighting
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-completions
-    jeffreytse/zsh-vi-mode
-EOBUNDLES
-antigen theme romkatv/powerlevel10k
-antigen apply
-bindkey '^A' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
 
 # General Aliases
 alias ls='ls -AF'

@@ -23,7 +23,7 @@ au FocusGained,BufEnter * :silent! !				" Trigger autoread when changing buffers
 set updatetime=300
 
 
-" FORMATTING 
+" DISPLAY
 set laststatus=2									" Always show status line at the bottom
 set cmdheight=2
 if !&scrolloff
@@ -41,7 +41,7 @@ if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright color
 endif
 set showmode										" Show mode on the last line
 if has('nvim')
-	set cursorline										" Highlight line under cursor horizontally
+	set cursorline									" Highlight line under cursor horizontally
 endif
 set number											" Line numbers
 set relativenumber
@@ -49,9 +49,6 @@ set ruler
 set signcolumn=yes									" Adds sign column to the left of line numbers
 if &listchars ==# 'eol:$'							" Setting basic listchars
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-endif
-if v:version > 703 || v:version == 703 && has("patch541")	
-  set formatoptions+=j 								" Delete comment character when joining commented lines
 endif
 
 
@@ -65,6 +62,9 @@ if !has('nvim') && &ttimeoutlen == -1				" Never time out on mappings, quickly t
   set ttimeout
   set ttimeoutlen=50
 endif
+if v:version > 703 || v:version == 703 && has("patch541")	
+  set formatoptions+=j 								" Delete comment character when joining commented lines
+endif
 
 
 " INDENTING
@@ -77,6 +77,7 @@ set smarttab
 set shiftwidth=4									" Set indentation width for tabs
 set tabstop=4
 set softtabstop=4
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 
 " SEARCHING
@@ -132,10 +133,10 @@ endif
 let g:NERDSpaceDelims = 1									" Add spaces after comment delimiters by default
 let g:NERDCommentEmptyLines = 1								" Allow commenting and inverting empty lines
 " NERDTree
-let NERDTreeShowHidden=1									" Show hidden files by default
-autocmd StdinReadPre * let s:std_in=1						" Start NERDTree when Vim starts with a directory argument.
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+let NERDTreeShowHidden = 1									" Show hidden files by default
+let NERDTreeMinimalUI = 1									" Remove 'Press ? for help'
+let NERDTreeDirArrows = 1									" Improve NERDTree UI
+let NERDTreeQuitOnOpen = 1									" Close NERDTree when a file is opened
 															" Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 															" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
@@ -155,10 +156,13 @@ let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named an
 
 
 " SET THEME
-if has('nvim')
-	colorscheme gruvbox
-endif
-let g:airline_theme='gruvbox'
+let g:gruvbox_sign_column = 'bg0'
+let g:gruvbox_color_column = 'bg0'
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_light = 'hard'
+autocmd FileType markdown setlocal background=light
+colorscheme gruvbox
+let g:airline_theme = 'gruvbox'
 
 
 " KEY BINDINGS
@@ -170,24 +174,29 @@ let mapleader=" "
 nmap Q <Nop>												" Q in normal mode enters Ex mode
 nnoremap J 10j												" Map J and K to 10j and 10k respectively
 nnoremap K 10k
+nnoremap <C-D> 30j											" Map <C-D> and <C-U> to 30 lines down and up respectively
+nnoremap <C-U> 30k
 nnoremap Y y$												" Map Y to yank to EOL like D and C
 nnoremap gI gi												" Map gI to Vim gi because mapping is overridden by coc.nvim
 nnoremap <leader>w :w<CR>									" <Space>w saves file
+nnoremap <leader>q :q<CR>									" <Space>q quits file
+nnoremap <leader>wq :wq<CR>									" <Space>wq saves and quits file
 nnoremap <leader>h :nohl<CR>								" <Space>h turns off search highlighing
-nnoremap <C-L> :nohl<CR><C-L>								" <C-L> redraws the screens and turns off search highlighting
+nnoremap <silent> <C-L> :nohl<CR><C-L>						" <C-L> redraws the screens and turns off search highlighting
 nnoremap <leader>j J										" Remap original join functionality to <Space>j
 " Navigation
-nnoremap gt :tabnext<CR>									" Map gt to original :tabnext functionality
-nnoremap gT :tabprevious<CR>								" Map gT to original :tabnext functionality
+nnoremap <silent> gt :tabnext<CR>							" Map gt to original :tabnext functionality
+nnoremap <silent> gT :tabprevious<CR>						" Map gT to original :tabnext functionality
 nnoremap <leader>b :buffers<CR>:buffer<space>
-nnoremap <leader>bd :bdelete<CR>							" Delete current buffer
-nnoremap L :bnext<CR>										" Map shift+arrow to switch buffers
-nnoremap H :bprevious<CR>
+nnoremap <silent> <leader>d :bdelete<CR>					" Delete current buffer
+nnoremap <silent> L :bnext<CR>								" Map shift+arrow to switch buffers
+nnoremap <silent> H :bprevious<CR>
 " Plugins
 nnoremap <leader>t :NERDTreeMirror<CR>:NERDTreeToggle<CR>	" Toggle NERDTree
+nnoremap <leader>v :NERDTreeFind<CR>:NERDTreeMirror<CR>		" Reveal current file in NERDTree
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>r :Rg<CR>
-cnoreabbrev pi PlugInstall
+cnoreabbrev pi PlugInstall									" Vim Plug shortcuts
 cnoreabbrev pc PlugClean
 cnoreabbrev pu PlugUpdate
 cnoreabbrev pr Prettier										" Format file using Prettier
