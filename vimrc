@@ -27,7 +27,7 @@ set updatetime=300
 set laststatus=2									" Always show status line at the bottom
 set cmdheight=2
 if !&scrolloff
-  set scrolloff=10
+  set scrolloff=12
 endif
 if !&sidescrolloff
   set sidescrolloff=20
@@ -40,9 +40,6 @@ if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright color
   set t_Co=16
 endif
 set showmode										" Show mode on the last line
-if has('nvim')
-	set cursorline									" Highlight line under cursor horizontally
-endif
 set number											" Line numbers
 set relativenumber
 set ruler
@@ -108,6 +105,7 @@ Plug 'herringtondarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-repeat'
+Plug 'kshenoy/vim-signature'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 " NeoVim Plugins
@@ -117,6 +115,7 @@ if has('nvim')
 endif
 " Themes
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'dracula/vim',{'as':'dracula'}
 Plug 'sonph/onehalf',{'rtp':'vim/'}
 Plug 'arcticicestudio/nord-vim'
@@ -156,9 +155,14 @@ let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named an
 
 
 " SET THEME
+let g:gruvbox_italics = 1
+let g:gruvbox_underline = 1
+let g:gruvbox_undercurl = 1
+let g:gruvbox_number_column = 'bg0'
 let g:gruvbox_sign_column = 'bg0'
 let g:gruvbox_color_column = 'bg0'
 let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_contrast_light = 'hard'
 autocmd FileType markdown setlocal background=light
 colorscheme gruvbox
@@ -166,11 +170,10 @@ let g:airline_theme = 'gruvbox'
 
 
 " KEY BINDINGS
-" Setting Leader
+" General
 set backspace=indent,eol,start								" Make backspace behave more intuitively
 nnoremap <space> <Nop>										" Remap Leader key
 let mapleader=" "
-" General
 nmap Q <Nop>												" Q in normal mode enters Ex mode
 nnoremap J 10j												" Map J and K to 10j and 10k respectively
 nnoremap K 10k
