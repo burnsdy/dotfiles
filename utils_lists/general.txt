@@ -1,12 +1,12 @@
 python3
 nodejs
 npm
-neovim
 tmux
+neovim
 fzf
-tldr
-bat
-delta
+ripgrep
 fd-find
 silversearcher-ag
-ripgrep
+delta
+bat
+tldr
