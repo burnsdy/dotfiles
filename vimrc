@@ -174,6 +174,8 @@ let mapleader=" "
 nmap Q <Nop>												" Q in normal mode enters Ex mode
 nnoremap J 10j												" Map J and K to 10j and 10k respectively
 nnoremap K 10k
+vnoremap J 10j
+vnoremap K 10k
 nnoremap <C-D> 30j											" Map <C-D> and <C-U> to 30 lines down and up respectively
 nnoremap <C-U> 30k
 nnoremap Y y$												" Map Y to yank to EOL like D and C
