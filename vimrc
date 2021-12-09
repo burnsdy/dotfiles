@@ -126,6 +126,10 @@ call plug#end()
 " PLUGIN SETTINGS
 " Conquer of Completion
 if has('nvim')
+	let g:coc_global_extensions = ['coc-highlight', 'coc-prettier', 'coc-eslint', 'coc-word', 'coc-markdownlint', 'coc-json', 'coc-tsserver', 'coc-styled-components']
+	autocmd VimEnter * call CocActionAsync('deactivateExtension', 'coc-highlight')
+	autocmd BufNew,BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-highlight')
+	autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-highlight')
 	source ~/.nvim/cocconf.vim
 endif
 " NERDCommenter
@@ -154,7 +158,7 @@ let g:vim_markdown_edit_url_in = 'tab'						" Open links in a new tab and not th
 let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named anchors in links in the form of file#anchor
 
 
-" SET THEME
+" THEME SETTINGS
 let g:gruvbox_italics = 1
 let g:gruvbox_underline = 1
 let g:gruvbox_undercurl = 1
@@ -163,45 +167,58 @@ let g:gruvbox_sign_column = 'bg0'
 let g:gruvbox_color_column = 'bg0'
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'medium'
-let g:gruvbox_contrast_light = 'hard'
+let g:gruvbox_contrast_light = 'medium'
 autocmd FileType markdown setlocal background=light
+"autocmd BufNew,BufEnter *.md setlocal background=light
+"autocmd BufLeave *.md setlocal background=dark
 colorscheme gruvbox
 let g:airline_theme = 'gruvbox'
 
 
 " KEY BINDINGS
 " General
-set backspace=indent,eol,start								" Make backspace behave more intuitively
-nnoremap <space> <Nop>										" Remap Leader key
+" Make backspace behave more intuitively
+set backspace=indent,eol,start
+nnoremap <space> <Nop>
 let mapleader=" "
-nmap Q <Nop>												" Q in normal mode enters Ex mode
-nnoremap J 10j												" Map J and K to 10j and 10k respectively
+nmap Q <Nop>
+nnoremap J 10j
 nnoremap K 10k
 vnoremap J 10j
 vnoremap K 10k
-nnoremap <C-D> 30j											" Map <C-D> and <C-U> to 30 lines down and up respectively
-nnoremap <C-U> 30k
-nnoremap Y y$												" Map Y to yank to EOL like D and C
-nnoremap gI gi												" Map gI to Vim gi because mapping is overridden by coc.nvim
-nnoremap <leader>w :w<CR>									" <Space>w saves file
-nnoremap <leader>q :q<CR>									" <Space>q quits file
-nnoremap <leader>wq :wq<CR>									" <Space>wq saves and quits file
-nnoremap <leader>h :nohl<CR>								" <Space>h turns off search highlighing
-nnoremap <silent> <C-L> :nohl<CR><C-L>						" <C-L> redraws the screens and turns off search highlighting
-nnoremap <leader>j J										" Remap original join functionality to <Space>j
+nnoremap <C-D> 20j
+nnoremap <C-U> 20k
+nnoremap Y y$
+" Map gI to Vim gi because mapping is overridden by coc.nvim
+nnoremap gI gi
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>wq :wq<CR>
+nnoremap <leader>n :nohl<CR>
+nnoremap <silent> <C-L> :nohl<CR><C-L>
+nnoremap <leader>j J
+
 " Navigation
-nnoremap <silent> gt :tabnext<CR>							" Map gt to original :tabnext functionality
-nnoremap <silent> gT :tabprevious<CR>						" Map gT to original :tabnext functionality
+nnoremap <silent> gt :tabnext<CR>
+nnoremap <silent> gT :tabprevious<CR>
 nnoremap <leader>b :buffers<CR>:buffer<space>
-nnoremap <silent> <leader>d :bdelete<CR>					" Delete current buffer
-nnoremap <silent> L :bnext<CR>								" Map shift+arrow to switch buffers
+nnoremap <silent> <leader>d :bdelete<CR>
+nnoremap <silent> L :bnext<CR>
 nnoremap <silent> H :bprevious<CR>
+vnoremap <silent> L :bnext<CR>
+vnoremap <silent> H :bprevious<CR>
+nnoremap <silent> <leader>l <C-W>l
+nnoremap <silent> <leader>h <C-W>h
+vnoremap <silent> <leader>l <C-W>l
+vnoremap <silent> <leader>h <C-W>h
+
 " Plugins
-nnoremap <leader>t :NERDTreeMirror<CR>:NERDTreeToggle<CR>	" Toggle NERDTree
-nnoremap <leader>v :NERDTreeFind<CR>:NERDTreeMirror<CR>		" Reveal current file in NERDTree
+nnoremap <leader>t :NERDTreeMirror<CR>:NERDTreeToggle<CR>
+" Reveal current file in NERDTree
+nnoremap <leader>v :NERDTreeFind<CR>:NERDTreeMirror<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>r :Rg<CR>
-cnoreabbrev pi PlugInstall									" Vim Plug shortcuts
+cnoreabbrev pi PlugInstall
 cnoreabbrev pc PlugClean
 cnoreabbrev pu PlugUpdate
-cnoreabbrev pr Prettier										" Format file using Prettier
+cnoreabbrev pr Prettier
