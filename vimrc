@@ -104,6 +104,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'herringtondarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'plasticboy/vim-markdown'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-repeat'
 Plug 'kshenoy/vim-signature'
 Plug 'justinmk/vim-sneak'
@@ -127,7 +128,7 @@ call plug#end()
 " Conquer of Completion
 if has('nvim')
 	let g:coc_global_extensions = ['coc-highlight', 'coc-prettier', 'coc-eslint', 'coc-word', 'coc-markdownlint', 'coc-json', 'coc-tsserver', 'coc-styled-components']
-	autocmd VimEnter * call CocActionAsync('deactivateExtension', 'coc-highlight')
+	autocmd VimEnter *.md call CocActionAsync('deactivateExtension', 'coc-highlight')
 	autocmd BufNew,BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-highlight')
 	autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-highlight')
 	source ~/.nvim/cocconf.vim
