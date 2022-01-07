@@ -195,6 +195,8 @@ nnoremap gI gi
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>wq :wq<CR>
+nnoremap <leader>p "0p<CR>
+nnoremap <leader>P "0P<CR>
 nnoremap <leader>n :nohl<CR>
 nnoremap <silent> <C-L> :nohl<CR><C-L>
 nnoremap <leader>j J
