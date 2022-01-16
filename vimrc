@@ -104,6 +104,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'herringtondarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'plasticboy/vim-markdown'
+Plug 'dkarter/bullets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-repeat'
 Plug 'kshenoy/vim-signature'
@@ -112,7 +113,6 @@ Plug 'tpope/vim-surround'
 " NeoVim Plugins
 if has('nvim')
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 " Themes
 Plug 'morhetz/gruvbox'
@@ -157,6 +157,9 @@ let g:vim_markdown_new_list_item_indent = 0					" Keep same indent level when ad
 let g:vim_markdown_autowrite = 1							" Automatically save in the current document when following a link
 let g:vim_markdown_edit_url_in = 'tab'						" Open links in a new tab and not the current buffer
 let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named anchors in links in the form of file#anchor
+" Bullets.vim
+let g:bullets_enabled_file_types = ['markdown', 'text', 'gitcommit', 'scratch']
+let g:bullets_outline_levels = ['ROM', 'ABC', 'num', 'abc', 'rom', 'std-']
 
 
 " THEME SETTINGS
@@ -192,6 +195,10 @@ nnoremap <C-U> 20k
 nnoremap Y y$
 " Map gI to Vim gi because mapping is overridden by coc.nvim
 nnoremap gI gi
+nnoremap gw ^
+vnoremap gw ^
+nnoremap gW $
+vnoremap gW $
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>wq :wq<CR>
@@ -201,7 +208,7 @@ nnoremap <leader>n :nohl<CR>
 nnoremap <silent> <C-L> :nohl<CR><C-L>
 nnoremap <leader>j J
 
-" Navigation
+" Tab/Buffer Navigation
 nnoremap <silent> gt :tabnext<CR>
 nnoremap <silent> gT :tabprevious<CR>
 nnoremap <leader>b :buffers<CR>:buffer<space>
