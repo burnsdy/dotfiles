@@ -31,8 +31,8 @@ setopt INC_APPEND_HISTORY			# add commands as they are typed, not at shell exit
 setopt HIST_EXPIRE_DUPS_FIRST		# expire duplicates first
 setopt HIST_IGNORE_DUPS				# do not store duplicates
 setopt HIST_REDUCE_BLANKS			# remove blank lines from history
-export VISUAL='/usr/local/bin/nvim'	# set graphical editor to nvim
-export EDITOR='/usr/bin/vim'			# set command-line editor to vim (non-graphical)
+export VISUAL='/usr/bin/vim'		# set graphical editor to nvim
+export EDITOR='/usr/bin/vim'		# set command-line editor to vim (non-graphical)
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
