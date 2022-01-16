@@ -10,7 +10,8 @@ Note: gitconfigs maintained separately across multiple devices
 - Tmux
 
 ### Installation
-1. Symlink files to your home directory (through use of [Dotbot](https://github.com/anishathalye/dotbot)): `./install`
-2. Configure shell theme: `p10k configure`, then install the [recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
-3. Install essential shell utilities: `./install_utils`
-4. Configure Vim/NeoVim plugins: `nvim -c :PlugInstall`
+1. Install powerlevel10k theme: `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k`
+2. Configure shell theme: `p10k configure`, then install the [recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k) (if it wasn't already installed during theme configuration)
+3. Symlink files to your home directory (through use of [Dotbot](https://github.com/anishathalye/dotbot)): `./install`
+4. Install essential shell utilities: `./install_utils`
+5. Configure Vim/NeoVim plugins: `nvim -c :PlugInstall`
