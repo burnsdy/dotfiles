@@ -103,7 +103,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'herringtondarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'plasticboy/vim-markdown'
-Plug 'dkarter/bullets.vim'
+"Plug 'dkarter/bullets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-repeat'
 Plug 'kshenoy/vim-signature'
@@ -158,8 +158,8 @@ let g:vim_markdown_edit_url_in = 'tab'						" Open links in a new tab and not th
 let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named anchors in links in the form of file#anchor
 let g:markdown_minlines = 300
 " Bullets.vim
-let g:bullets_enabled_file_types = ['markdown', 'text', 'gitcommit', 'scratch']
-let g:bullets_outline_levels = ['ROM', 'ABC', 'num', 'abc', 'rom', 'std-']
+"let g:bullets_enabled_file_types = ['markdown', 'text', 'gitcommit', 'scratch']
+"let g:bullets_outline_levels = ['ROM', 'ABC', 'num', 'abc', 'rom', 'std-']
 
 
 " THEME SETTINGS
