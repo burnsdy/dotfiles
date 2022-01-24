@@ -90,7 +90,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
@@ -127,7 +126,7 @@ call plug#end()
 " PLUGIN SETTINGS
 " Conquer of Completion
 if has('nvim')
-	let g:coc_global_extensions = ['coc-highlight', 'coc-prettier', 'coc-eslint', 'coc-word', 'coc-markdownlint', 'coc-json', 'coc-tsserver', 'coc-styled-components']
+	let g:coc_global_extensions = ['coc-highlight', 'coc-prettier', 'coc-eslint', 'coc-word', 'coc-json', 'coc-tsserver', 'coc-styled-components']
 	autocmd VimEnter *.md call CocActionAsync('deactivateExtension', 'coc-highlight')
 	autocmd BufNew,BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-highlight')
 	autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-highlight')
@@ -151,12 +150,13 @@ let g:airline#extensions#tabline#enabled = 1				" Enable buffer display as tabs 
 let g:airline#extensions#tabline#formatter = 'unique_tail'	" Theme for buffer extension
 let g:airline_powerline_fonts = 1							" Configure airline to use the powerline font
 " Vim Markdown
-let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'rust', 'sass', 'vim', 'xml']
+let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'vim']
 let g:vim_markdown_strikethrough = 1						" Allow strikethrough formatting in Markdown
 let g:vim_markdown_new_list_item_indent = 0					" Keep same indent level when adding new list items
 let g:vim_markdown_autowrite = 1							" Automatically save in the current document when following a link
 let g:vim_markdown_edit_url_in = 'tab'						" Open links in a new tab and not the current buffer
 let g:vim_markdown_follow_anchor = 1						" Allows ge command to follow named anchors in links in the form of file#anchor
+let g:markdown_minlines = 300
 " Bullets.vim
 let g:bullets_enabled_file_types = ['markdown', 'text', 'gitcommit', 'scratch']
 let g:bullets_outline_levels = ['ROM', 'ABC', 'num', 'abc', 'rom', 'std-']
@@ -173,8 +173,6 @@ let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_contrast_light = 'medium'
 autocmd FileType markdown setlocal background=light
-"autocmd BufNew,BufEnter *.md setlocal background=light
-"autocmd BufLeave *.md setlocal background=dark
 colorscheme gruvbox
 let g:airline_theme = 'gruvbox'
 
@@ -204,6 +202,10 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>p "0p<CR>
 nnoremap <leader>P "0P<CR>
+nnoremap <leader>y "*y<CR>
+nnoremap <leader>Y "*Y<CR>
+nnoremap <leader>yy "*yy<CR>
+vnoremap <leader>y "*y<CR>
 nnoremap <leader>n :nohl<CR>
 nnoremap <silent> <C-L> :nohl<CR><C-L>
 nnoremap <leader>j J
