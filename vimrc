@@ -74,6 +74,7 @@ set smarttab
 set shiftwidth=4									" Set indentation width for tabs
 set tabstop=4
 set softtabstop=4
+set expandtab
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 
@@ -100,9 +101,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
-Plug 'herringtondarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 Plug 'dkarter/bullets.vim'
 Plug 'michaeljsmith/vim-indent-object'
@@ -150,6 +149,9 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 let g:airline#extensions#tabline#enabled = 1				" Enable buffer display as tabs extension
 let g:airline#extensions#tabline#formatter = 'unique_tail'	" Theme for buffer extension
 let g:airline_powerline_fonts = 1							" Configure airline to use the powerline font
+" Vim Surround
+let g:surround_{char2nr('b')} = "**\r**"
+let g:surround_{char2nr('c')} = "```\n\r\n```"
 " Vim Markdown
 let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'ruby', 'rust', 'sass', 'vim', 'xml']
 let g:vim_markdown_strikethrough = 1						" Allow strikethrough formatting in Markdown
