@@ -191,6 +191,7 @@ vnoremap K 10k
 nnoremap <C-D> 20j
 nnoremap <C-U> 20k
 nnoremap Y y$
+nnoremap X cl
 " Map gI to Vim gi because mapping is overridden by coc.nvim
 nnoremap gI gi
 nnoremap gw ^
