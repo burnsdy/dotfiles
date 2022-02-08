@@ -202,12 +202,14 @@ vnoremap gW $
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>wq :wq<CR>
+nnoremap <leader>d d^<CR>
 nnoremap <leader>p "0p<CR>
 nnoremap <leader>P "0P<CR>
 nnoremap <leader>y "*y<CR>
 nnoremap <leader>Y "*Y<CR>
 nnoremap <leader>yy "*yy<CR>
 vnoremap <leader>y "*y<CR>
+nnoremap <leader>v v$h
 nnoremap <leader>n :nohl<CR>
 nnoremap <silent> <C-L> :nohl<CR><C-L>
 nnoremap <leader>j J
@@ -229,7 +231,7 @@ vnoremap <silent> <leader>h <C-W>h
 " Plugins
 nnoremap <leader>t :NERDTreeMirror<CR>:NERDTreeToggle<CR>
 " Reveal current file in NERDTree
-nnoremap <leader>v :NERDTreeFind<CR>:NERDTreeMirror<CR>
+nnoremap <leader>g :NERDTreeFind<CR>:NERDTreeMirror<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>r :Rg<CR>
 cnoreabbrev pi PlugInstall
