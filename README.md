@@ -6,7 +6,7 @@ Note: gitconfigs maintained separately across multiple devices
   - Customizable theme provided through [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - NeoVim
   - Preconfigured with 20+ useful plugins
-  - Has full backwards compatibility to Vim
+  - Error-free backwards compatibility to Vim
 - Tmux
 
 ### Installation

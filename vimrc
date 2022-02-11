@@ -41,7 +41,6 @@ if &t_Co == 8 && $TERM !~# '^Eterm'					" Allow color schemes to do bright color
 endif
 set showmode										" Show mode on the last line
 set number											" Line numbers
-set relativenumber
 set ruler
 set signcolumn=yes									" Adds sign column to the left of line numbers
 if &listchars ==# 'eol:$'							" Setting basic listchars
