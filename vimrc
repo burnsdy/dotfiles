@@ -151,6 +151,8 @@ let g:airline_powerline_fonts = 1							" Configure airline to use the powerline
 " Vim Surround
 let g:surround_{char2nr('b')} = "**\r**"
 let g:surround_{char2nr('c')} = "```\n\r\n```"
+" Vim Sneak
+let g:sneak#use_ic_scs = 1
 " Vim Markdown
 let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'vim']
 let g:vim_markdown_strikethrough = 1						" Allow strikethrough formatting in Markdown
@@ -203,7 +205,6 @@ vnoremap gW $
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>wq :wq<CR>
-nnoremap <leader>d d^<CR>
 nnoremap <leader>p "0p<CR>
 nnoremap <leader>P "0P<CR>
 nnoremap <leader>y "*y<CR>
