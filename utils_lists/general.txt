@@ -5,6 +5,7 @@ tmux
 neovim
 fzf
 ripgrep
+git-filter-repo
 delta
 bat
 tldr
