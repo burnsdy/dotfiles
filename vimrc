@@ -153,7 +153,7 @@ let g:surround_{char2nr('c')} = "```\n\r\n```"
 " Vim Sneak
 let g:sneak#use_ic_scs = 1
 " Vim Markdown
-let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'js=javascript', 'json=javascript', 'python', 'vim']
+let g:markdown_fenced_languages = ['c', 'cpp', 'css', 'go', 'html', 'java', 'javascript', 'json=javascript', 'python',  'typescript', 'vim']
 let g:vim_markdown_folding_disabled = 1                     " Disable folding configuration
 let g:vim_markdown_strikethrough = 1						" Allow strikethrough formatting in Markdown
 let g:vim_markdown_new_list_item_indent = 0					" Keep same indent level when adding new list items
