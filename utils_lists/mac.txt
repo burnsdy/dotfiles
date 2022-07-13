@@ -1,3 +1,4 @@
+yarn
 exa
 fd
 the_silver_searcher
