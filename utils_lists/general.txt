@@ -1,11 +1,10 @@
-python3
+bat
+fzf
+git-filter-repo
+neovim
 nodejs
 npm
-tmux
-neovim
-fzf
+python3
 ripgrep
-git-filter-repo
-delta
-bat
 tldr
+tmux

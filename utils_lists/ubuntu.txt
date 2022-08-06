@@ -1,3 +1,4 @@
-gnome-tweaks
+delta
 fd-find
+gnome-tweaks
 silversearcher-ag
