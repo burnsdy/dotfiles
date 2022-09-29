@@ -11,9 +11,3 @@
 [submodule "zsh/zsh-autosuggestions"]
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "tmux/tmux-resurrect"]
-	path = tmux/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect
-[submodule "tmux/tmux-continuum"]
-	path = tmux/tmux-continuum
-	url = https://github.com/tmux-plugins/tmux-continuum
