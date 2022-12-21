@@ -22,22 +22,23 @@ antigen apply
 bindkey '^F' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
 
 # Options
-setopt AUTO_CD						# automatic change directory
-setopt NO_CASE_GLOB					# case-insensitive globbing
-setopt EXTENDED_HISTORY				# add timestamp and elapsed time of command to history
-setopt NO_SHARE_HISTORY				# don't share history across multiple zsh sessions
-setopt APPEND_HISTORY				# append to history
-setopt INC_APPEND_HISTORY			# add commands as they are typed, not at shell exit
-setopt HIST_EXPIRE_DUPS_FIRST		# expire duplicates first
-setopt HIST_IGNORE_DUPS				# do not store duplicates
-setopt HIST_REDUCE_BLANKS			# remove blank lines from history
-export VISUAL='/usr/bin/vim'		# set graphical editor to nvim
-export EDITOR='/usr/bin/vim'		# set command-line editor to vim (non-graphical)
+setopt AUTO_CD						# Automatic change directory
+setopt NO_CASE_GLOB					# Case-insensitive globbing
+setopt EXTENDED_HISTORY				# Add timestamp and elapsed time of command to history
+setopt NO_SHARE_HISTORY				# Don't share history across multiple zsh sessions
+setopt APPEND_HISTORY				# Append to history
+setopt INC_APPEND_HISTORY			# Add commands as they are typed, not at shell exit
+setopt HIST_EXPIRE_DUPS_FIRST		# Expire duplicates first
+setopt HIST_IGNORE_DUPS				# Do not store duplicates
+setopt HIST_REDUCE_BLANKS			# Remove blank lines from history
+export VISUAL='/usr/bin/vim'		# Set graphical editor to nvim
+export EDITOR='/usr/bin/vim'		# Set command-line editor to vim (non-graphical)
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash completion
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
