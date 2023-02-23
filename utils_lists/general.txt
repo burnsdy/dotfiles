@@ -8,3 +8,4 @@ python3
 ripgrep
 tldr
 tmux
+yarn
