@@ -12,10 +12,10 @@ antigen bundles <<EOBUNDLES
     command-not-found
     djui/alias-tips
     zsh-users/zsh-autosuggestions
-    zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
     zsh-users/zsh-completions
     jeffreytse/zsh-vi-mode
+    zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
