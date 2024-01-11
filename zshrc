@@ -2,20 +2,20 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Plugins
 source ~/.zsh/antigen/antigen.zsh
 antigen bundles <<EOBUNDLES
-    git
-    command-not-found
-    djui/alias-tips
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-completions
-    jeffreytse/zsh-vi-mode
-    zsh-users/zsh-syntax-highlighting
+	git
+	command-not-found
+	djui/alias-tips
+	zsh-users/zsh-autosuggestions
+	zsh-users/zsh-history-substring-search
+	zsh-users/zsh-completions
+	jeffreytse/zsh-vi-mode
+	zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
