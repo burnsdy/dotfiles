@@ -34,6 +34,20 @@ setopt HIST_REDUCE_BLANKS			# Remove blank lines from history
 export VISUAL='/usr/bin/vim'		# Set graphical editor to nvim
 export EDITOR='/usr/bin/vim'		# Set command-line editor to vim (non-graphical)
 
+# GPG
+export GPG_TTY=$(tty)
+
+# Google Cloud SDK
+#if [ -f '/Applications/google-cloud-sdk/path.zsh.inc' ]; then
+# . '/Applications/google-cloud-sdk/path.zsh.inc';  # Update PATH
+#fi
+#if [ -f '/Applications/google-cloud-sdk/completion.zsh.inc' ]; then
+# . '/Applications/google-cloud-sdk/completion.zsh.inc';  # Enable shell command completion
+#fi
+
+# Rancher Desktop
+export PATH="$HOME/.rd/bin:$PATH"
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
