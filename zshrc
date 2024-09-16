@@ -31,11 +31,11 @@ setopt INC_APPEND_HISTORY			# Add commands as they are typed, not at shell exit
 setopt HIST_EXPIRE_DUPS_FIRST		# Expire duplicates first
 setopt HIST_IGNORE_DUPS				# Do not store duplicates
 setopt HIST_REDUCE_BLANKS			# Remove blank lines from history
-export VISUAL='/usr/bin/vim'		# Set graphical editor to nvim
+export VISUAL='/usr/bin/vim'		# Set graphical editor to vim
 export EDITOR='/usr/bin/vim'		# Set command-line editor to vim (non-graphical)
 
 # GPG
-export GPG_TTY=$(tty)
+#export GPG_TTY=$(tty)
 
 # Google Cloud SDK
 #if [ -f '/Applications/google-cloud-sdk/path.zsh.inc' ]; then
@@ -46,13 +46,13 @@ export GPG_TTY=$(tty)
 #fi
 
 # Rancher Desktop
-export PATH="$HOME/.rd/bin:$PATH"
+#export PATH="$HOME/.rd/bin:$PATH"
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
+#export PATH="/usr/local/opt/openssl/bin:$PATH"
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash completion
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,11 +1,8 @@
 bat
+exa
 fzf
-git-filter-repo
 neovim
-nodejs
-npm
-python3
+pyenv
 ripgrep
 tldr
 tmux
-yarn

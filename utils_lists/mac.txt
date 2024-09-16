@@ -1,6 +1,2 @@
-exa
 fd
 git-delta
-the_silver_searcher
-yarn
-tree
