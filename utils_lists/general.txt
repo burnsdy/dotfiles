@@ -1,6 +1,7 @@
 bat
 exa
 fzf
+lazygit
 neovim
 pyenv
 ripgrep
