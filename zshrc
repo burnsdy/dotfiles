@@ -48,6 +48,9 @@ export EDITOR='/usr/bin/vim'		# Set command-line editor to vim (non-graphical)
 # Rancher Desktop
 #export PATH="$HOME/.rd/bin:$PATH"
 
+# DOTNET
+#export PATH="$HOME/.dotnet/tools:$PATH"
+
 # NVM
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
