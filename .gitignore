@@ -1,4 +1,4 @@
 gitconfig
-vim/plugged/**
+vim_backup/vim/plugged/**
 zsh/p10k.zsh
 zsh/zsh_hidden_aliases
