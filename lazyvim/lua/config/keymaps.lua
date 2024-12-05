@@ -3,6 +3,6 @@
 -- Add any additional keymaps here
 local map = vim.keymap.set
 
-map({ "n", "v" }, "J", "10j", { desc = "Down 10 lines", silent = true, remap = true })
-map({ "n", "v" }, "K", "10k", { desc = "Up 10 lines", silent = true, remap = true })
+map({ "n", "v" }, "J", "10j", { desc = "Scroll down 10 lines", silent = true, remap = true })
+map({ "n", "v" }, "K", "10k", { desc = "Scroll up 10 lines", silent = true, remap = true })
 map("n", "<leader>j", "J")
