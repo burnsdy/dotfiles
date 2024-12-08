@@ -69,7 +69,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=
 autoload -Uz compinit && compinit
 
 # General Aliases
-alias ls='ls -AF'
+alias ls='ls -AF --color=auto'
 alias grep='grep --color'
 alias v='vim'
 alias n='nvim'
