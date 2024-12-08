@@ -8,9 +8,10 @@ fi
 # Plugins
 source ~/.zsh/antigen/antigen.zsh
 antigen bundles <<EOBUNDLES
-	git
-	command-not-found
 	djui/alias-tips
+	command-not-found
+  Aloxaf/fzf-tab
+	git
 	zsh-users/zsh-autosuggestions
 	zsh-users/zsh-history-substring-search
 	zsh-users/zsh-completions
