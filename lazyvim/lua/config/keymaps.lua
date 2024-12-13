@@ -4,7 +4,7 @@
 local map = vim.keymap.set
 
 -- Remap <leader>; to save
-map({ "n", "v" }, "<leader>;", "<cmd>write<cr>", { desc = "Save file", silent = true })
+map({ "n", "v" }, "<leader>;", "<cmd>nohlsearch<CR><cmd>write<cr>", { desc = "Save file", silent = true })
 
 -- Remap J and K for navigation
 map({ "n", "v" }, "J", "10j", { desc = "Scroll down 10 lines", silent = true, remap = true })
