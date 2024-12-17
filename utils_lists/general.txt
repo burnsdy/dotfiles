@@ -1,3 +1,4 @@
+abhinav/tap/git-spice
 bat
 exa
 fzf
