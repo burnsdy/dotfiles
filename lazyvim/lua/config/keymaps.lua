@@ -13,3 +13,7 @@ map("n", "<leader>j", "J")
 
 -- Remap <leader>v to visual select to end of line
 map("n", "<leader>v", "v$", { desc = "Visual select to EOL", silent = true })
+
+-- Remap <c-d> and <c-u> to scroll only 20 lines
+map("n", "<c-d>", "20<c-e>", { desc = "Scroll down 20 lines", silent = true })
+map("n", "<c-u>", "20<c-y>", { desc = "Scroll up 20 lines", silent = true })
