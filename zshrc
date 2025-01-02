@@ -20,7 +20,7 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
-bindkey '^;' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
+bindkey '^y' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
