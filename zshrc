@@ -20,9 +20,9 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
-bindkey '^l' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
-bindkey '^k' history-search-backward
-bindkey '^j' history-search-forward
+bindkey '^;' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # Options
 setopt AUTO_CD						# Automatic change directory
