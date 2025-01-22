@@ -6,6 +6,7 @@
 - clean: ['~']              # Defines what directory should be inspected for dead links, and removes links
 
 - link:                     # Defines where we want the symlink to be once linked
+    ~/.config/ghostty: ghostty
     ~/.config/nvim: lazyvim
     ~/.tmux.conf:
     ~/.zsh:
