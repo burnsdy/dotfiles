@@ -25,40 +25,40 @@ bindkey '^n' history-search-backward
 bindkey '^p' history-search-forward
 
 # Options
-setopt AUTO_CD						# Automatic change directory
-setopt NO_CASE_GLOB					# Case-insensitive globbing
-setopt EXTENDED_HISTORY				# Add timestamp and elapsed time of command to history
-setopt NO_SHARE_HISTORY				# Don't share history across multiple zsh sessions
-setopt APPEND_HISTORY				# Append to history
-setopt INC_APPEND_HISTORY			# Add commands as they are typed, not at shell exit
-setopt HIST_EXPIRE_DUPS_FIRST		# Expire duplicates first
-setopt HIST_IGNORE_DUPS				# Do not store duplicates
-setopt HIST_REDUCE_BLANKS			# Remove blank lines from history
-export VISUAL='/opt/homebrew/bin/nvim'		# Set graphical editor to vim
-export EDITOR='/opt/homebrew/bin/nvim'		# Set command-line editor to vim (non-graphical)
+setopt AUTO_CD # Automatic change directory
+setopt NO_CASE_GLOB # Case-insensitive globbing
+setopt EXTENDED_HISTORY # Add timestamp and elapsed time of command to history
+setopt NO_SHARE_HISTORY # Don't share history across multiple zsh sessions
+setopt APPEND_HISTORY # Append to history
+setopt INC_APPEND_HISTORY # Add commands as they are typed, not at shell exit
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicates first
+setopt HIST_IGNORE_DUPS # Do not store duplicates
+setopt HIST_REDUCE_BLANKS # Remove blank lines from history
+export VISUAL='/opt/homebrew/bin/nvim' # Set graphical editor to vim
+export EDITOR='/opt/homebrew/bin/nvim' # Set command-line editor to vim (non-graphical)
 
 # GPG
-#export GPG_TTY=$(tty)
+# export GPG_TTY=$(tty)
 
 # Google Cloud SDK
-#if [ -f '/Applications/google-cloud-sdk/path.zsh.inc' ]; then
-# . '/Applications/google-cloud-sdk/path.zsh.inc';  # Update PATH
-#fi
-#if [ -f '/Applications/google-cloud-sdk/completion.zsh.inc' ]; then
-# . '/Applications/google-cloud-sdk/completion.zsh.inc';  # Enable shell command completion
-#fi
+# if [ -f '/Applications/google-cloud-sdk/path.zsh.inc' ]; then
+# . '/Applications/google-cloud-sdk/path.zsh.inc'; # Update PATH
+# fi
+# if [ -f '/Applications/google-cloud-sdk/completion.zsh.inc' ]; then
+# . '/Applications/google-cloud-sdk/completion.zsh.inc'; # Enable shell command completion
+# fi
 
 # Rancher Desktop
-#export PATH="$HOME/.rd/bin:$PATH"
+# export PATH="$HOME/.rd/bin:$PATH"
 
 # DOTNET
-#export PATH="$HOME/.dotnet/tools:$PATH"
+# export PATH="$HOME/.dotnet/tools:$PATH"
 
 # NVM
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
-#export PATH="/usr/local/opt/openssl/bin:$PATH"
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load nvm
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # Load nvm bash completion
 
 # FZF
 source <(fzf --zsh)
@@ -89,7 +89,7 @@ alias lg='lazygit'
 alias ls='ls -AF --color=auto'
 alias grep='grep --color'
 alias home='cd ~'
-alias tmux='tmux -2'				# Fix terminal colors inside tmux
+alias tmux='tmux -2' # Fix terminal colors inside tmux
 alias vimrc='nvim ~/.vimrc'
 alias zshrc='nvim ~/.zshrc'
 
