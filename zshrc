@@ -20,10 +20,19 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
-# Note that all Zsh keybindings must be capitalized to correctly override defaults
-bindkey '^J' history-search-forward
-bindkey '^K' history-search-backward
-bindkey '^L' autosuggest-accept
+# zsh-vi-mode recommends using zvm_bindkey instead of bindkey
+# zsh-vi-mode changes bindkey mode from emacs (default) to vicmd (Normal mode) and viins (Insert mode)
+# Therefore, bindkey commands must be set for all relevant modes
+# See https://github.com/jeffreytse/zsh-vi-mode?tab=readme-ov-file#custom-widgets-and-keybindings
+# Lastly, avoid using ^J ^K and ^L keybindings as they are overriden by vim-tmux-navigator (when inside tmux)
+for keymap in main emacs viins vicmd; do
+  zvm_bindkey $keymap '^N' history-search-forward
+  zvm_bindkey $keymap '^P' history-search-backward
+  zvm_bindkey $keymap '^A' autosuggest-accept
+  zvm_bindkey $keymap '^Y' autosuggest-execute
+done
+# Start new shell in Normal mode, default is ZVM_MODE_LAST (last mode)
+ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
 
 # Options
 setopt AUTO_CD # Automatic change directory
