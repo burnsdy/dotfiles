@@ -20,9 +20,10 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
-bindkey '^y' autosuggest-accept		# Bind Ctrl-A to accept current autosuggestion
-bindkey '^n' history-search-backward
-bindkey '^p' history-search-forward
+# Note that all Zsh keybindings must be capitalized to correctly override defaults
+bindkey '^J' history-search-forward
+bindkey '^K' history-search-backward
+bindkey '^L' autosuggest-accept
 
 # Options
 setopt AUTO_CD # Automatic change directory
