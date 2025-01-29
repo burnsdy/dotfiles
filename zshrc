@@ -112,5 +112,9 @@ if [ -f ~/.zsh/zsh_hidden_aliases ]; then
 	source ~/.zsh/zsh_hidden_aliases
 fi
 
+# zoxide
+eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
+# Also adds cdi command for interactive selection using fzf
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

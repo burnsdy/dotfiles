@@ -1,6 +1,5 @@
 abhinav/tap/git-spice
 bat
-exa
 fzf
 lazygit
 neovim
@@ -8,3 +7,4 @@ pyenv
 ripgrep
 tldr
 tmux
+zoxide
