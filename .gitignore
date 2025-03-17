@@ -2,3 +2,4 @@ gitconfig
 vim_backup/vim/plugged/**
 zsh/p10k.zsh
 zsh/zsh_hidden_aliases
+.aider*
