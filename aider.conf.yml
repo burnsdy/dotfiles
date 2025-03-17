@@ -1,0 +1,77 @@
+#############
+# Main model:
+
+## Specify the model to use for the main chat
+model: 4o
+
+########################
+# API Keys and settings:
+
+## Specify the OpenAI API key
+# Note(Dylan): environment variable OPENAI_API_KEY is set within .zshrc
+# openai-api-key:
+
+##################
+# Output settings:
+
+## Use colors suitable for a dark terminal background (default: False)
+# Note(Dylan): dark-mode: true seems to override manually-set colors below
+dark-mode: false
+
+# Note(Dylan): Hex color values must be quoted otherwise YAML treats values as comments
+## Set the color for user input (default: #00cc00)
+user-input-color: "#8bb09b"
+
+## Set the color for tool output (default: None)
+#tool-output-color: "xxx"
+
+## Set the color for tool error messages (default: #FF2222)
+tool-error-color: "#ba566d"
+
+## Set the color for tool warning messages (default: #FFA500)
+tool-warning-color: "#d6c07e"
+
+## Set the color for assistant output (default: #0088ff)
+assistant-output-color: "#7a9ad1"
+
+## Set the color for the completion menu (default: terminal's default text color)
+#completion-menu-color: "xxx"
+
+## Set the background color for the completion menu (default: terminal's default background color)
+#completion-menu-bg-color: "xxx"
+
+## Set the color for the current item in the completion menu (default: terminal's default background color)
+#completion-menu-current-color: "xxx"
+
+## Set the background color for the current item in the completion menu (default: terminal's default text color)
+#completion-menu-current-bg-color: "xxx"
+
+## Set the markdown code theme (default: default, other options include monokai, solarized-dark, solarized-light, or a Pygments builtin style, see https://pygments.org/styles for available themes)
+code-theme: lightbulb # TODO: try nord or nord-darker
+
+###############
+# Git settings:
+
+## Enable/disable adding .aider* to .gitignore (default: True)
+gitignore: true
+
+## Enable/disable auto commit of LLM changes (default: True)
+auto-commits: false
+
+## Enable/disable commits when repo is found dirty (default: True)
+dirty-commits: true
+
+## Attribute aider code changes in the git author name (default: True)
+attribute-author: false
+
+## Attribute aider commits in the git committer name (default: True)
+attribute-committer: false
+
+#################
+# Other settings:
+
+## Use VI editing mode in the terminal (default: False)
+vim: true
+
+## Enable/disable multi-line input mode with Meta-Enter to submit (default: False)
+multiline: false

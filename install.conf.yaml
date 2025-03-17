@@ -8,6 +8,7 @@
 - link:                     # Defines where we want the symlink to be once linked
     ~/.config/ghostty: ghostty
     ~/.config/nvim: lazyvim
+    ~/.aider.conf.yml:
     ~/.tmux.conf:
     ~/.zsh:
 

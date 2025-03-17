@@ -116,5 +116,9 @@ fi
 eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
 # Also adds cdi command for interactive selection using fzf
 
+# Set OpenAI API key
+# To set/update, run `security add-generic-password -a ${USER} -s openai_api_key -w "your_api_key"`
+export OPENAI_API_KEY=$(security find-generic-password -a ${USER} -s openai_api_key -w)
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
