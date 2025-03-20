@@ -1,3 +1,4 @@
 delta
 fd-find
 gnome-tweaks
+./wikiman*.deb
