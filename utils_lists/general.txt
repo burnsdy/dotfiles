@@ -1,6 +1,7 @@
 abhinav/tap/git-spice
 bat
 fzf
+kubectx
 lazygit
 neovim
 pyenv
