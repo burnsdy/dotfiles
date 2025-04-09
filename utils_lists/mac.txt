@@ -1,2 +1,3 @@
 fd
 git-delta
+schappim/ocr/ocr
