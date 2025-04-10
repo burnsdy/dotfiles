@@ -119,7 +119,8 @@ eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
 
 # Set OpenAI API key
 # To set/update, run `security add-generic-password -a ${USER} -s openai_api_key -w "your_api_key"`
-export OPENAI_API_KEY=$(security find-generic-password -a ${USER} -s openai_api_key -w)
+export OPENAI_API_KEY="$(security find-generic-password -a ${USER} -s openai_api_key -w 2>/dev/null || echo '')"
+export GROQ_API_KEY="$(security find-generic-password -a ${USER} -s groq_api_key -w 2>/dev/null || echo '')"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
