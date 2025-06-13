@@ -1,4 +1,6 @@
 return {
+  -- { "gbprod/nord.nvim" },  -- mid
+  { "dupeiran001/nord.nvim" },
   { "EdenEast/nightfox.nvim" },
   { "ellisonleao/gruvbox.nvim" },
 
@@ -6,7 +8,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nightfox",
+      colorscheme = "nord",
     },
   },
 }
