@@ -98,6 +98,7 @@ alias r='source ~/.zshrc'
 alias v='vim'
 alias lg='lazygit'
 alias ls='ls -AF --color=auto'
+alias claude="/Users/dylan.burns/.claude/local/claude"
 alias grep='grep --color'
 alias home='cd ~'
 alias tmux='tmux -2' # Fix terminal colors inside tmux

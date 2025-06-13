@@ -9,6 +9,7 @@
     ~/.config/ghostty: ghostty
     ~/.config/nvim: lazyvim
     ~/.aider.conf.yml:
+    ~/.claude/CLAUDE.md:
     ~/.gitexcludes:         # Run `git config --global core.excludesfile ~/.gitexcludes`
     ~/.tmux.conf:
     ~/.zsh:
