@@ -1,5 +1,5 @@
 return {
-  -- { "gbprod/nord.nvim" },  -- mid
+  -- { "gbprod/nord.nvim" }, -- mid
   { "dupeiran001/nord.nvim" },
   { "EdenEast/nightfox.nvim" },
   { "ellisonleao/gruvbox.nvim" },
