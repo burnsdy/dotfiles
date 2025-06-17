@@ -6,10 +6,11 @@
 - clean: ['~']              # Defines what directory should be inspected for dead links, and removes links
 
 - link:                     # Defines where we want the symlink to be once linked
+    ~/.aider.conf.yml:
+    ~/.claude/CLAUDE.md: claude/CLAUDE.md
+    ~/.claude/commands: claude/commands
     ~/.config/ghostty: ghostty
     ~/.config/nvim: lazyvim
-    ~/.aider.conf.yml:
-    ~/.claude/CLAUDE.md:
     ~/.gitexcludes:         # Run `git config --global core.excludesfile ~/.gitexcludes`
     ~/.tmux.conf:
     ~/.zsh:
