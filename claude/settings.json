@@ -6,8 +6,10 @@
       "Bash(grep*)",
       "Bash(ls*)",
       "Create",
-      "Fetch",
-      "Read"
-    ]
+      "Read",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "deny": []
   }
 }
