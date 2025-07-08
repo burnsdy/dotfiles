@@ -9,6 +9,7 @@
     ~/.aider.conf.yml:
     ~/.claude/CLAUDE.md: claude/CLAUDE.md
     ~/.claude/commands: claude/commands
+    ~/.claude/settings.json: claude/settings.json
     ~/.config/ghostty: ghostty
     ~/.config/nvim: lazyvim
     ~/.gitexcludes:         # Run `git config --global core.excludesfile ~/.gitexcludes`

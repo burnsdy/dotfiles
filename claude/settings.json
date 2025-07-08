@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat*)",
+      "Bash(cd*)",
+      "Bash(grep*)",
+      "Bash(ls*)",
+      "Create",
+      "Fetch",
+      "Read"
+    ]
+  }
+}
