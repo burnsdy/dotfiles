@@ -117,6 +117,7 @@ fi
 # zoxide
 eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
 # Also adds cdi command for interactive selection using fzf
+export _ZO_DOCTOR=0 # Remove error message for original cd usage
 
 # Set OpenAI API key
 # To set/update, run `security add-generic-password -a ${USER} -s openai_api_key -w "your_api_key"`
