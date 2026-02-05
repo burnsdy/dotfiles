@@ -84,8 +84,16 @@
     ],
     "deny": []
   },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
   "enabledPlugins": {
     "marketplace-auto-update@datadog-claude-plugins": true,
-    "atlassian-remote-mcp@datadog-claude-plugins": true
+    "atlassian-remote-mcp@datadog-claude-plugins": true,
+    "code-simplifier@claude-plugins-official": false,
+    "go-code-reviewer@datadog-claude-plugins": false,
+    "python-code-reviewer@datadog-claude-plugins": false
   }
 }
