@@ -20,6 +20,36 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
+
+# diffcheck function, eventually will publish as a plugin
+diffcheck() {
+  emulate -L zsh
+  setopt localtraps
+
+  # Require deps
+  command -v delta >/dev/null 2>&1 || { print -u2 "diffcheck: 'delta' not found"; return 127; }
+  command -v git   >/dev/null 2>&1 || { print -u2 "diffcheck: 'git' not found (needed for --no-index diff)"; return 127; }
+
+  local tmp1 tmp2
+  tmp1="$(mktemp -t diffcheck.XXXXXX)" || return 1
+  tmp2="$(mktemp -t diffcheck.XXXXXX)" || { rm -f "$tmp1"; return 1; }
+
+  # Always clean up
+  trap 'rm -f "$tmp1" "$tmp2"' EXIT INT TERM
+
+  print -u2 ""
+  print -P -u2 "%F{cyan}%BPaste ORIGINAL text%b%f %F{blue}(finish with Ctrl-D)%f:"
+  cat > "$tmp1"
+
+  print -u2 ""
+  print -P -u2 "%F{cyan}%BPaste CHANGED text%b%f %F{blue}(finish with Ctrl-D)%f:"
+  cat > "$tmp2"
+
+  print -u2 ""
+  git diff --no-index -- "$tmp1" "$tmp2" \
+    | delta --side-by-side --paging=always
+}
+
 # zsh-vi-mode recommends using zvm_bindkey instead of bindkey
 # zsh-vi-mode changes bindkey mode from emacs (default) to vicmd (Normal mode) and viins (Insert mode)
 # Therefore, bindkey commands must be set for all relevant modes
@@ -98,7 +128,7 @@ alias r='source ~/.zshrc'
 alias v='vim'
 alias lg='lazygit'
 alias ls='ls -AF --color=auto'
-alias claude="/Users/dylan.burns/.claude/local/claude"
+alias bdiff='diffcheck'
 alias grep='grep --color'
 alias home='cd ~'
 alias tmux='tmux -2' # Fix terminal colors inside tmux
