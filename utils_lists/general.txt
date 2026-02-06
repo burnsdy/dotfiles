@@ -6,6 +6,7 @@ lazygit
 neovim
 pyenv
 ripgrep
+shellcheck
 tldr
 tmux
 zoxide
