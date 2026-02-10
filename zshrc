@@ -202,7 +202,8 @@ if [ -f ~/.zsh/zsh_hidden_aliases ]; then
 fi
 
 # zoxide
-eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
+# eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
+eval "$(zoxide init zsh)" # Aliases z to zoxide
 # Also adds cdi command for interactive selection using fzf
 export _ZO_DOCTOR=0 # Remove error message for original cd usage
 
