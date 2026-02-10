@@ -8,15 +8,15 @@ fi
 # Plugins
 source ~/.zsh/antigen/antigen.zsh
 antigen bundles <<EOBUNDLES
-	djui/alias-tips
-	command-not-found
+  djui/alias-tips
+  command-not-found
   Aloxaf/fzf-tab
-	git
-	zsh-users/zsh-autosuggestions
-	zsh-users/zsh-history-substring-search
-	zsh-users/zsh-completions
-	jeffreytse/zsh-vi-mode
-	zsh-users/zsh-syntax-highlighting
+  git
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-completions
+  jeffreytse/zsh-vi-mode
+  zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 antigen theme romkatv/powerlevel10k
 antigen apply
@@ -50,6 +50,65 @@ diffcheck() {
     | delta --side-by-side --paging=always
 }
 
+# tnew function, tmux templater that calls ~/.tmux/template-session.sh
+tnew() {
+  local name="$1"
+  [[ -z "$name" ]] && { echo "usage: tnew <dir-name>"; return 2; }
+
+  # Resolve directory with zoxide, fallback to literal/tilde expansion
+  local dir
+  if command -v zoxide >/dev/null 2>&1; then
+    dir="$(zoxide query -- "${name}" 2>/dev/null || true)"
+  fi
+  if [[ -z "$dir" ]]; then
+    # fallback to literal path expansion
+    dir="${name/#\~/$HOME}"
+  fi
+
+  if [[ ! -d "$dir" ]]; then
+    echo "tnew: target directory not found: $dir" >&2
+    return 1
+  fi
+
+  # Ensure template script exists
+  local tmpl="$HOME/.tmux/template-session.sh"
+  if [[ ! -x "$tmpl" ]]; then
+    echo "tnew: template script not found or not executable: $tmpl" >&2
+    return 1
+  fi
+
+  # If session already exists, just switch/attach (don't recreate)
+  if tmux has-session -t "$name" 2>/dev/null; then
+    if [[ -n "$TMUX" ]]; then
+      tmux switch-client -t "$name"
+    else
+      tmux attach -t "$name"
+    fi
+    return 0
+  fi
+
+  # Build the tmux command chain that:
+  #  - creates session detached
+  #  - sets @template and @template_dir on that session
+  #  - runs the template script via tmux run-shell (so it runs on the server)
+  #  - then either switches client (if inside tmux) or attaches (if outside)
+  if [[ -n "$TMUX" ]]; then
+    tmux new-session -d -s "$name" \; \
+      set -t "$name" @template 1 \; \
+      set -t "$name" @template_name "$name" \; \
+      set -t "$name" @template_dir "$dir" \; \
+      run-shell -b "$HOME/.tmux/template-session.sh" \; \
+      switch-client -t "$name"
+  else
+    tmux new -d -s "$name" \; \
+      set -t "$name" @template 1 \; \
+      set -t "$name" @template_name "$name" \; \
+      set -t "$name" @template_dir "$dir" \; \
+      run-shell -b "$HOME/.tmux/template-session.sh" \; \
+      attach -t "$name"
+  fi
+}
+
 # zsh-vi-mode recommends using zvm_bindkey instead of bindkey
 # zsh-vi-mode changes bindkey mode from emacs (default) to vicmd (Normal mode) and viins (Insert mode)
 # Therefore, bindkey commands must be set for all relevant modes
@@ -61,8 +120,6 @@ for keymap in main emacs viins vicmd; do
   zvm_bindkey $keymap '^A' autosuggest-accept
   zvm_bindkey $keymap '^Y' autosuggest-execute
 done
-# Start new shell in Normal mode, default is ZVM_MODE_LAST (last mode)
-ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
 
 # Options
 setopt AUTO_CD # Automatic change directory
