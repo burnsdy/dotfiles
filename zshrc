@@ -1,13 +1,16 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+# Skip instant prompt if p10k is already loaded in THIS shell (prevents hang on re-source)
+if [[ -z "$_p10k_sourced" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Plugins
-source ~/.zsh/antigen/antigen.zsh
-antigen bundles <<EOBUNDLES
+# Plugins (skip re-initialization on re-source to prevent hang)
+# Check if antigen function exists in THIS shell to avoid re-loading
+if ! (( ${+functions[antigen]} )); then
+  source ~/.zsh/antigen/antigen.zsh
+  antigen bundles <<EOBUNDLES
   djui/alias-tips
   command-not-found
   Aloxaf/fzf-tab
@@ -18,8 +21,9 @@ antigen bundles <<EOBUNDLES
   jeffreytse/zsh-vi-mode
   zsh-users/zsh-syntax-highlighting
 EOBUNDLES
-antigen theme romkatv/powerlevel10k
-antigen apply
+  antigen theme romkatv/powerlevel10k
+  antigen apply
+fi
 
 # diffcheck function, eventually will publish as a plugin
 diffcheck() {
@@ -114,12 +118,15 @@ tnew() {
 # Therefore, bindkey commands must be set for all relevant modes
 # See https://github.com/jeffreytse/zsh-vi-mode?tab=readme-ov-file#custom-widgets-and-keybindings
 # Lastly, avoid using ^J ^K and ^L keybindings as they are overriden by vim-tmux-navigator (when inside tmux)
-for keymap in main emacs viins vicmd; do
-  zvm_bindkey $keymap '^N' history-search-forward
-  zvm_bindkey $keymap '^P' history-search-backward
-  zvm_bindkey $keymap '^A' autosuggest-accept
-  zvm_bindkey $keymap '^Y' autosuggest-execute
-done
+# IMPORTANT: Must be called AFTER zsh-vi-mode loads (using zvm_after_init hook)
+function zvm_after_init() {
+  for keymap in main emacs viins vicmd; do
+    zvm_bindkey $keymap '^N' history-search-forward
+    zvm_bindkey $keymap '^P' history-search-backward
+    zvm_bindkey $keymap '^A' autosuggest-accept
+    zvm_bindkey $keymap '^Y' autosuggest-execute
+  done
+}
 
 # Options
 setopt AUTO_CD # Automatic change directory
@@ -158,8 +165,11 @@ export MANPAGER='nvim +Man!'  # Set man pager to nvim (for `man` commands)
 # export PATH="/usr/local/opt/openssl/bin:$PATH"
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # Load nvm bash completion
 
-# FZF
-source <(fzf --zsh)
+# FZF (cached for performance)
+if [[ ! -f ~/.fzf.zsh ]] || [[ $(command -v fzf 2>/dev/null) -nt ~/.fzf.zsh ]]; then
+  fzf --zsh > ~/.fzf.zsh 2>/dev/null
+fi
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 if type rg &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='rg --files'
 	export FZF_DEFAULT_OPTS='-m --height 50% --border'
@@ -167,7 +177,13 @@ fi
 
 # Completions
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+# Only regenerate compdump once per day
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # General Aliases
 alias ..='cd ..'
@@ -201,9 +217,12 @@ if [ -f ~/.zsh/zsh_hidden_aliases ]; then
 	source ~/.zsh/zsh_hidden_aliases
 fi
 
-# zoxide
+# zoxide (cached for performance)
 # eval "$(zoxide init --cmd cd zsh)" # Aliases cd to zoxide
-eval "$(zoxide init zsh)" # Aliases z to zoxide
+if [[ ! -f ~/.zoxide.zsh ]] || [[ $(command -v zoxide 2>/dev/null) -nt ~/.zoxide.zsh ]]; then
+  zoxide init zsh > ~/.zoxide.zsh 2>/dev/null
+fi
+[[ -f ~/.zoxide.zsh ]] && source ~/.zoxide.zsh  # Aliases z to zoxide
 # Also adds cdi command for interactive selection using fzf
 export _ZO_DOCTOR=0 # Remove error message for original cd usage
 
