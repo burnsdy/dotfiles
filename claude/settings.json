@@ -97,10 +97,18 @@
       "mcp__atlassian__getJiraProjectIssueTypesMetadata",
       "mcp__atlassian__getJiraIssueTypeMetaWithFields",
       "mcp__atlassian__search",
-      "mcp__atlassian__fetch"
+      "mcp__atlassian__fetch",
+      "mcp__slack__slack_read_channel",
+      "mcp__slack__slack_read_thread",
+      "mcp__slack__slack_search_channels",
+      "mcp__slack__slack_read_user_profile",
+      "mcp__slack__slack_create_canvas",
+      "mcp__slack__slack_send_message",
+      "mcp__slack__slack_search_public"
     ],
     "deny": []
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -115,6 +123,8 @@
     "feature-dev@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
-    "osx-notifications@datadog-claude-plugins": true
-  }
+    "osx-notifications@datadog-claude-plugins": true,
+    "atlassian@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
 }
