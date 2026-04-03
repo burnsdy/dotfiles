@@ -1,1 +1,2 @@
 theme = nordfox
+shell-integration-features = ssh-terminfo,ssh-env
