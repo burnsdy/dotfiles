@@ -1,0 +1,18 @@
+# Plugins
+djui/alias-tips
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+Aloxaf/fzf-tab
+ohmyzsh/ohmyzsh path:plugins/git
+zsh-users/zsh-history-substring-search
+
+# Completions (fpath only, no sourcing needed)
+zsh-users/zsh-completions kind:fpath
+
+zsh-users/zsh-autosuggestions
+jeffreytse/zsh-vi-mode
+
+# Syntax highlighting (must be last)
+zsh-users/zsh-syntax-highlighting
+
+# Theme
+romkatv/powerlevel10k

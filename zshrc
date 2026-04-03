@@ -6,24 +6,19 @@ if [[ -z "$_p10k_sourced" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-inst
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Plugins (skip re-initialization on re-source to prevent hang)
-# Check if antigen function exists in THIS shell to avoid re-loading
-if ! (( ${+functions[antigen]} )); then
-  source ~/.zsh/antigen/antigen.zsh
-  antigen bundles <<EOBUNDLES
-  djui/alias-tips
-  command-not-found
-  Aloxaf/fzf-tab
-  git
-  zsh-users/zsh-autosuggestions
-  zsh-users/zsh-history-substring-search
-  zsh-users/zsh-completions
-  jeffreytse/zsh-vi-mode
-  zsh-users/zsh-syntax-highlighting
-EOBUNDLES
-  antigen theme romkatv/powerlevel10k
-  antigen apply
+# Completions (must run before plugins that call compdef)
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+autoload -Uz compinit
+# Only regenerate compdump once per day
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
 fi
+
+# Plugins (antidote)
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 # diffcheck function, eventually will publish as a plugin
 diffcheck() {
@@ -152,15 +147,6 @@ if type rg &> /dev/null; then
 	export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-# Completions
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -Uz compinit
-# Only regenerate compdump once per day
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
 
 # General Aliases
 alias ..='cd ..'

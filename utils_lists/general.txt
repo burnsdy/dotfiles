@@ -1,4 +1,5 @@
 abhinav/tap/git-spice
+antidote
 bat
 fzf
 kubectx
