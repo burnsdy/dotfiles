@@ -142,29 +142,6 @@ export VISUAL='/opt/homebrew/bin/nvim' # Set graphical editor to vim
 export EDITOR='/opt/homebrew/bin/nvim' # Set command-line editor to vim (non-graphical)
 export MANPAGER='nvim +Man!'  # Set man pager to nvim (for `man` commands)
 
-# GPG
-# export GPG_TTY=$(tty)
-
-# Google Cloud SDK
-# if [ -f '/Applications/google-cloud-sdk/path.zsh.inc' ]; then
-# . '/Applications/google-cloud-sdk/path.zsh.inc'; # Update PATH
-# fi
-# if [ -f '/Applications/google-cloud-sdk/completion.zsh.inc' ]; then
-# . '/Applications/google-cloud-sdk/completion.zsh.inc'; # Enable shell command completion
-# fi
-
-# Rancher Desktop
-# export PATH="$HOME/.rd/bin:$PATH"
-
-# DOTNET
-# export PATH="$HOME/.dotnet/tools:$PATH"
-
-# NVM
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load nvm
-# export PATH="/usr/local/opt/openssl/bin:$PATH"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # Load nvm bash completion
-
 # FZF (cached for performance)
 if [[ ! -f ~/.fzf.zsh ]] || [[ $(command -v fzf 2>/dev/null) -nt ~/.fzf.zsh ]]; then
   fzf --zsh > ~/.fzf.zsh 2>/dev/null
