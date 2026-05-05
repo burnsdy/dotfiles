@@ -1,2 +1,5 @@
-.aider*
+.DS_Store
+*.env.local
+gitignore
+zgitignore
 
