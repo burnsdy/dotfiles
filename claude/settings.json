@@ -10,10 +10,13 @@
       "Bash(cat:*)",
       "Bash(cd:*)",
       "Bash(date:*)",
+      "Bash(echo:*)",
       "Bash(diff:*)",
       "Bash(file:*)",
       "Bash(find:*)",
+      "Bash(gdate:*)",
       "Bash(grep:*)",
+      "Bash(printf:*)",
       "Bash(head:*)",
       "Bash(jq:*)",
       "Bash(ls:*)",
@@ -108,7 +111,7 @@
     ],
     "deny": []
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -116,7 +119,6 @@
   },
   "enabledPlugins": {
     "marketplace-auto-update@datadog-claude-plugins": true,
-    "atlassian-remote-mcp@datadog-claude-plugins": true,
     "code-simplifier@claude-plugins-official": false,
     "go-code-reviewer@datadog-claude-plugins": false,
     "python-code-reviewer@datadog-claude-plugins": false,
@@ -124,7 +126,11 @@
     "commit-commands@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "osx-notifications@datadog-claude-plugins": true,
-    "atlassian@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "autoCompactEnabled": false
 }
