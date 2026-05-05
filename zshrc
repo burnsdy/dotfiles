@@ -133,8 +133,8 @@ setopt INC_APPEND_HISTORY # Add commands as they are typed, not at shell exit
 setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicates first
 setopt HIST_IGNORE_DUPS # Do not store duplicates
 setopt HIST_REDUCE_BLANKS # Remove blank lines from history
-export VISUAL='/opt/homebrew/bin/nvim' # Set graphical editor to vim
-export EDITOR='/opt/homebrew/bin/nvim' # Set command-line editor to vim (non-graphical)
+export VISUAL='vim' # Set graphical editor to vim
+export EDITOR='vim' # Set command-line editor to vim (non-graphical)
 export MANPAGER='nvim +Man!'  # Set man pager to nvim (for `man` commands)
 
 # FZF (cached for performance)
