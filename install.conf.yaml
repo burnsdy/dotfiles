@@ -16,6 +16,7 @@
     ~/.tmux/template-session.sh: tmux/template-session.sh
     ~/.tmux.conf:
     ~/.zsh:
+    ~/.zsh_plugins.txt:
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
