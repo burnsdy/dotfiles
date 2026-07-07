@@ -14,6 +14,7 @@
     ~/.config/nvim: lazyvim
     ~/.gitexcludes: # Run `git config --global core.excludesfile ~/.gitexcludes`
     ~/.tmux/template-session.sh: tmux/template-session.sh
+    ~/.tmux/tnew.sh: tmux/tnew.sh
     ~/.tmux.conf:
     ~/.zsh:
     ~/.zsh_plugins.txt:
