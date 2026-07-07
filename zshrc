@@ -78,7 +78,6 @@ setopt HIST_IGNORE_DUPS # Do not store duplicates
 setopt HIST_REDUCE_BLANKS # Remove blank lines from history
 export VISUAL='vim' # Set graphical editor to vim
 export EDITOR='vim' # Set command-line editor to vim (non-graphical)
-export MANPAGER='nvim +Man!'  # Set man pager to nvim (for `man` commands)
 
 # FZF (cached for performance)
 if [[ ! -f ~/.fzf.zsh ]] || [[ $(command -v fzf 2>/dev/null) -nt ~/.fzf.zsh ]]; then
