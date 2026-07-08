@@ -60,10 +60,13 @@ tnew() {
     local sanitized="${branch//\//-}"
     sanitized="${sanitized##-}"
 
+    # Branch suffix: the part after the last '/' (whole branch if no '/')
+    local suffix="${branch##*/}"
+
     local repo_name wt_path session
     repo_name="$(basename "$repo_root")"
     wt_path="$HOME/worktrees/${repo_name}/${sanitized}"
-    session="${name}-${sanitized}"
+    session="${name}-${suffix}"
 
     # Create worktree only if the path doesn't already exist
     if [[ ! -d "$wt_path" ]]; then
