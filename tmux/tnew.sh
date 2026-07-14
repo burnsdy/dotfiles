@@ -43,6 +43,10 @@ tnew() {
     return 1
   fi
 
+  # session/session_dir default to the plain (non-worktree) case; the
+  # worktree branch below overrides both when -w is given.
+  local session="$name" session_dir="$dir"
+
   if [[ $worktree_mode -eq 1 ]]; then
     local branch="${positional[2]}"
     if [[ -z "$branch" ]]; then
@@ -56,63 +60,31 @@ tnew() {
       return 1
     }
 
-    # Sanitize branch name: / → -, strip leading -
-    local sanitized="${branch//\//-}"
-    sanitized="${sanitized##-}"
-
     # Branch suffix: the part after the last '/' (whole branch if no '/')
     local suffix="${branch##*/}"
-
-    local repo_name wt_path session
+    local repo_name
     repo_name="$(basename "$repo_root")"
-    wt_path="$HOME/worktrees/${repo_name}/${sanitized}"
+    session_dir="$HOME/worktrees/${repo_name}/${suffix}"
     session="${name}-${suffix}"
 
     # Create worktree only if the path doesn't already exist
-    if [[ ! -d "$wt_path" ]]; then
-      mkdir -p "$(dirname "$wt_path")"
+    if [[ ! -d "$session_dir" ]]; then
+      mkdir -p "$(dirname "$session_dir")"
       # Try checking out an existing branch first; create new branch if it doesn't exist
-      git -C "$repo_root" worktree add "$wt_path" "$branch" 2>/dev/null || \
-        git -C "$repo_root" worktree add -b "$branch" "$wt_path" || {
-          echo "tnew: failed to create worktree at $wt_path for branch '$branch'" >&2
+      git -C "$repo_root" worktree add "$session_dir" "$branch" 2>/dev/null || \
+        git -C "$repo_root" worktree add -b "$branch" "$session_dir" || {
+          echo "tnew: failed to create worktree at $session_dir for branch '$branch'" >&2
           return 1
         }
     fi
-
-    # Attach to existing session if present, otherwise create a fresh one
-    if tmux has-session -t "$session" 2>/dev/null; then
-      if [[ -n "$TMUX" ]]; then
-        tmux switch-client -t "$session"
-      else
-        tmux attach -t "$session"
-      fi
-      return 0
-    fi
-
-    if [[ -n "$TMUX" ]]; then
-      tmux new-session -d -s "$session" \; \
-        set -t "$session" @template 1 \; \
-        set -t "$session" @template_name "$session" \; \
-        set -t "$session" @template_dir "$wt_path" \; \
-        run-shell -b "$tmpl" \; \
-        switch-client -t "$session"
-    else
-      tmux new -d -s "$session" \; \
-        set -t "$session" @template 1 \; \
-        set -t "$session" @template_name "$session" \; \
-        set -t "$session" @template_dir "$wt_path" \; \
-        run-shell -b "$tmpl" \; \
-        attach -t "$session"
-    fi
-    return 0
   fi
 
   # If session already exists, just switch/attach (don't recreate)
-  if tmux has-session -t "$name" 2>/dev/null; then
+  if tmux has-session -t "$session" 2>/dev/null; then
     if [[ -n "$TMUX" ]]; then
-      tmux switch-client -t "$name"
+      tmux switch-client -t "$session"
     else
-      tmux attach -t "$name"
+      tmux attach -t "$session"
     fi
     return 0
   fi
@@ -123,18 +95,18 @@ tnew() {
   #  - runs the template script via tmux run-shell (so it runs on the server)
   #  - then either switches client (if inside tmux) or attaches (if outside)
   if [[ -n "$TMUX" ]]; then
-    tmux new-session -d -s "$name" \; \
-      set -t "$name" @template 1 \; \
-      set -t "$name" @template_name "$name" \; \
-      set -t "$name" @template_dir "$dir" \; \
+    tmux new-session -d -s "$session" \; \
+      set -t "$session" @template 1 \; \
+      set -t "$session" @template_name "$session" \; \
+      set -t "$session" @template_dir "$session_dir" \; \
       run-shell -b "$tmpl" \; \
-      switch-client -t "$name"
+      switch-client -t "$session"
   else
-    tmux new -d -s "$name" \; \
-      set -t "$name" @template 1 \; \
-      set -t "$name" @template_name "$name" \; \
-      set -t "$name" @template_dir "$dir" \; \
+    tmux new-session -d -s "$session" \; \
+      set -t "$session" @template 1 \; \
+      set -t "$session" @template_name "$session" \; \
+      set -t "$session" @template_dir "$session_dir" \; \
       run-shell -b "$tmpl" \; \
-      attach -t "$name"
+      attach -t "$session"
   fi
 }
