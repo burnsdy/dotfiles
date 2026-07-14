@@ -111,7 +111,8 @@
     ],
     "deny": []
   },
-  "model": "opus[1m]",
+  "model": "sonnet",
+  "advisorModel": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -126,7 +127,17 @@
     "commit-commands@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "osx-notifications@datadog-claude-plugins": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "trajectory@trajectory": true
+  },
+  "extraKnownMarketplaces": {
+    "trajectory": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dylan.burns/.trajectory/claude-marketplace"
+      }
+    }
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
