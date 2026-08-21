@@ -112,7 +112,6 @@
     "deny": []
   },
   "model": "sonnet",
-  "advisorModel": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -139,6 +138,7 @@
       }
     }
   },
+  "advisorModel": "opus",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",

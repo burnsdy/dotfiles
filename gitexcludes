@@ -3,3 +3,5 @@
 gitignore
 zgitignore
 
+
+**/.claude/settings.local.json
