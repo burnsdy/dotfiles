@@ -12,6 +12,7 @@
     ~/.claude/settings.json: claude/settings.json
     ~/.codex/AGENTS.md: codex/AGENTS.md
     ~/.config/ghostty: ghostty
+    ~/.config/herdr/config.toml: herdr/config.toml
     ~/.config/nvim: lazyvim
     ~/.gitexcludes: # Run `git config --global core.excludesfile ~/.gitexcludes`
     ~/.tmux/template-session.sh: tmux/template-session.sh
