@@ -20,7 +20,6 @@
 - Example: "Updated to bundle the JDK for both amd64 and arm64, and use the correct JDK at runtime based on OS architecture."
 
 ### Descriptions
-- Keep `## Summary` and either `## Testing` or `## Validation` sections.
-- Begin the summary with a single line describing the change, followed by one or more short sentences that add context and details.
-- Use single-line bullet points only when listing features or implementation details. Never use multi-line bullet points.
+- Use `## Summary` and either `## Testing` or `## Validation` sections.
+- Start `## Summary` with a 1-line summary of the change, followed by one or more single-line bullet points listing features. Never use multi-line bullet points.
 - Keep every testing or validation item as a single-line bullet point.
