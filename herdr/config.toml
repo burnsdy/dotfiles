@@ -3,6 +3,7 @@ onboarding = false
 [keys]
 prefix = "ctrl+space"
 next_agent = "prefix+a"
+remove_worktree = "prefix+d"
 navigate_workspace_up = ["up", "k"]
 navigate_workspace_down = ["down", "j"]
 navigate_pane_left = ["h", "ctrl+h"]
