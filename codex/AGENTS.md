@@ -1,5 +1,8 @@
 # Preferences
 
+## Communication
+- When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision
+
 ## Code Style
 - Prefer focused, readable functions; validate data at boundaries instead of adding speculative checks and excessive error handling throughout the code.
 - Use single-line comments and docstrings. Add docstrings only to non-obvious functions, and avoid comments unless necessary.
