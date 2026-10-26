@@ -16,6 +16,7 @@
 - Use the imperative: "Fix bug," not "Fixed bug."
 
 ## Pull Requests
+- After opening a PR, schedule the `babysit-pr-feedback` skill on it every 15 minutes; this authorizes pushing, commenting, and restacking on that PR only.
 
 ### Feedback Responses
 - Summarize the resulting behavior in one concise sentence, focusing on what changed rather than implementation and verification details.
